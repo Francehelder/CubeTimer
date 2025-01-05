@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=cube-timer-gtk
+Exec=cube-timer-gtk
+Icon=com.vallabh.CubeTimerGtk
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

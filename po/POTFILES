@@ -1,0 +1,6 @@
+data/com.vallabh.CubeTimerGtk.desktop.in
+data/com.vallabh.CubeTimerGtk.metainfo.xml.in
+data/com.vallabh.CubeTimerGtk.gschema.xml
+src/main.py
+src/window.py
+src/window.ui

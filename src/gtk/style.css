@@ -1,0 +1,11 @@
+.timer {
+    font-weight: normal;
+    font-family: cantarell-monospace;
+}
+
+.scramble {
+    font-weight: normal;
+    font-family: cantarell-monospace;
+    font-size: 40px;
+    color: grey;
+}
