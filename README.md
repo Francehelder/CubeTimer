@@ -9,7 +9,7 @@ Cube Timer is a 3x3 Rubiks Cube Timer application for the gnome desktop.
 ![Screenshot of Plots, displaying a running timer](data/screenshots/ss2.png)
 ![Screenshot of Plots, displaying a running timer](data/screenshots/ss3.png)
 
-## How to use?
+## How to use
 1. Scramble the 3x3 Rubiks Cube with the mentioned scramble.
 2. Inspect the cube.
 3. Long press and release the space bar to start the timer.
