@@ -37,10 +37,10 @@ class CubeTimerApplication(Adw.Application):
         about = Adw.AboutWindow(transient_for=self.props.active_window,
                                 application_name='cube-timer',
                                 application_icon='io.github.vallabhvidy.CubeTimer',
-                                developer_name='vallabh',
+                                developer_name='vallabhvidy',
                                 version='0.1.0',
-                                developers=['vallabh'],
-                                copyright='© 2024 vallabh')
+                                developers=['vallabhvidy'],
+                                copyright='© 2024 vallabhvidy')
         about.present()
 
     def on_preferences_action(self, widget, _):
