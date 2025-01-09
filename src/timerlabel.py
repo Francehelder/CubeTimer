@@ -15,7 +15,7 @@ def init_theme():
 
     
 
-@Gtk.Template(resource_path='/com/vallabh/CubeTimerGtk/timerlabel.ui')
+@Gtk.Template(resource_path='/io/github/vallabhvidy/CubeTimer/timerlabel.ui')
 class CubeTimerLabel(Gtk.Label):
     __gtype_name__ = 'CubeTimerLabel'
 

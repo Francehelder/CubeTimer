@@ -6,9 +6,9 @@ from .score import ScoresColumnViewBox
 
 scramble_moves = 25
 
-@Gtk.Template(resource_path='/com/vallabh/CubeTimerGtk/window.ui')
-class CubeTimerGtkWindow(Adw.ApplicationWindow):
-    __gtype_name__ = 'CubeTimerGtkWindow'
+@Gtk.Template(resource_path='/io/github/vallabhvidy/CubeTimer/window.ui')
+class CubeTimerWindow(Adw.ApplicationWindow):
+    __gtype_name__ = 'CubeTimerWindow'
 
     scores_box = Gtk.Template.Child()
     cube_timer_label = Gtk.Template.Child()

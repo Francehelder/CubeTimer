@@ -1,1 +1,1 @@
-i18n.gettext('cube-timer-gtk', preset: 'glib')
+i18n.gettext('cube-timer', preset: 'glib')

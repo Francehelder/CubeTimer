@@ -72,7 +72,7 @@ class CubeTimer(GObject.Object):
         self.scramble.show_scramble()
         self.sidebar_button.set_visible(True)
         self.timer_running = False
-        print((time()-self.acc_check_1)*1000)
+        # print((time()-self.acc_check_1)*1000)
         self.split_view.set_show_sidebar(state)
         self.update_scores(f"{self.min:02d}:{self.sec:02d}.{self.milisec:02d}", self.min, self.sec, self.milisec, self.scramble.scramble)
 

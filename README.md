@@ -1,5 +1,5 @@
 # Cube Timer
-![cube Timer icon](data/icons/hicolor/scalable/apps/com.vallabh.CubeTimerGtk.svg)
+![cube Timer icon](data/icons/hicolor/scalable/apps/io.github.vallabhvidy.CubeTimer.svg)
 
 Cube Timer is a 3x3 Rubiks Cube Timer application for the gnome desktop.
 

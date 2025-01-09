@@ -5,17 +5,17 @@ gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 
 from gi.repository import Gtk, Gio, Adw, Gdk
-from .window import CubeTimerGtkWindow
+from .window import CubeTimerWindow
 
 css_provider = Gtk.CssProvider()
-css_provider.load_from_resource('com/vallabh/CubeTimerGtk/gtk/style.css')
+css_provider.load_from_resource('io/github/vallabhvidy/CubeTimer/gtk/style.css')
 Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
-class CubeTimerGtkApplication(Adw.Application):
+class CubeTimerApplication(Adw.Application):
     """The main application singleton class."""
 
     def __init__(self):
-        super().__init__(application_id='com.vallabh.CubeTimerGtk',
+        super().__init__(application_id='io.github.vallabhvidy.CubeTimer',
                          flags=Gio.ApplicationFlags.DEFAULT_FLAGS)
         self.create_action('quit', lambda *_: self.quit(), ['<primary>q'])
         self.create_action('about', self.on_about_action)
@@ -29,14 +29,14 @@ class CubeTimerGtkApplication(Adw.Application):
         """
         win = self.props.active_window
         if not win:
-            win = CubeTimerGtkWindow(application=self)
+            win = CubeTimerWindow(application=self)
         win.present()
 
     def on_about_action(self, widget, _):
         """Callback for the app.about action."""
         about = Adw.AboutWindow(transient_for=self.props.active_window,
-                                application_name='cube-timer-gtk',
-                                application_icon='com.vallabh.CubeTimerGtk',
+                                application_name='cube-timer',
+                                application_icon='io.github.vallabhvidy.CubeTimer',
                                 developer_name='vallabh',
                                 version='0.1.0',
                                 developers=['vallabh'],
@@ -65,5 +65,5 @@ class CubeTimerGtkApplication(Adw.Application):
 
 def main(version):
     """The application's entry point."""
-    app = CubeTimerGtkApplication()
+    app = CubeTimerApplication()
     return app.run(sys.argv)

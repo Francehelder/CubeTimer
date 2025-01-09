@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=cube-timer-gtk
-Exec=cube-timer-gtk
-Icon=com.vallabh.CubeTimerGtk
+Name=cube-timer
+Exec=cube-timer
+Icon=io.github.vallabhvidy.CubeTimer
 Terminal=false
 Type=Application
 Categories=GTK;

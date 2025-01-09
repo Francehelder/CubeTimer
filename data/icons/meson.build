@@ -1,4 +1,4 @@
-application_id = 'com.vallabh.CubeTimerGtk'
+application_id = 'io.github.vallabhvidy.CubeTimer'
 
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
 install_data(

@@ -13,15 +13,15 @@ localedir = '@localedir@'
 
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
-locale.bindtextdomain('cube-timer-gtk', localedir)
-locale.textdomain('cube-timer-gtk')
-gettext.install('cube-timer-gtk', localedir)
+locale.bindtextdomain('cube-timer', localedir)
+locale.textdomain('cube-timer')
+gettext.install('cube-timer', localedir)
 
 if __name__ == '__main__':
     import gi
 
     from gi.repository import Gio
-    resource = Gio.Resource.load(os.path.join(pkgdatadir, 'cube-timer-gtk.gresource'))
+    resource = Gio.Resource.load(os.path.join(pkgdatadir, 'cube-timer.gresource'))
     resource._register()
 
     from cube_timer_gtk import main

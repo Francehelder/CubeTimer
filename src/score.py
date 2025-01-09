@@ -3,7 +3,7 @@ import os
 import json
 from pathlib import Path
 
-data_dir = Path(os.getenv('XDG_DATA_HOME', Path.home() / '.local/share')) / 'flatpak' / 'apps' / 'cube-timer-gtk' / 'CubeTimerGtk' 
+data_dir = Path(os.getenv('XDG_DATA_HOME', Path.home() / '.local/share')) / 'flatpak' / 'apps' / 'cube-timer' / 'CubeTimer'
 data_dir.mkdir(parents=True, exist_ok=True)
 scores_file_path = data_dir / 'scores.json'
 
@@ -32,7 +32,7 @@ class ScoresColumnViewBox(Gtk.Box):
     __gtype_name__ = "ScoresColumnViewBox"
 
     def __init__(self):
-        print(scores_file_path)
+        # print(scores_file_path)
         self.scores = dict()
         self.scores_column_view = Gtk.ColumnView()
         self.store = Gio.ListStore()
@@ -244,7 +244,7 @@ class ScoresColumnViewBox(Gtk.Box):
         self.load_scores(model[self.dropdown.get_selected()].name)
     
     def load_session_init(self):
-        print(self.button.get_icon_name())
+        # print(self.button.get_icon_name())
         def f_setup(fact, item):
             label = Gtk.Label(halign=Gtk.Align.START)
             label.set_selectable(False)
@@ -257,7 +257,7 @@ class ScoresColumnViewBox(Gtk.Box):
             item.get_child().set_label(str(item.get_item().name))
         fact.connect("bind", f_bind)
         self.dropdown.set_factory(fact)
-        print(self.scores.keys())
+        # print(self.scores.keys())
         for i in self.scores.keys():
             model.append(Session(i))
         if len(model) != 0:
@@ -335,4 +335,5 @@ class ScoresColumnViewBox(Gtk.Box):
     def save_scores(self):
         with open(scores_file_path, 'w') as scores_list:
             json.dump(self.scores, scores_list)
+
 

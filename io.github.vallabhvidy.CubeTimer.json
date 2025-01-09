@@ -1,9 +1,9 @@
 {
-    "id" : "com.vallabh.CubeTimerGtk",
-    "runtime" : "org.gnome.Sdk",
-    "runtime-version" : "46",
+    "id" : "io.github.vallabhvidy.CubeTimer",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "47",
     "sdk" : "org.gnome.Sdk",
-    "command" : "cube-timer-gtk",
+    "command" : "cube-timer",
     "finish-args" : [
         "--share=network",
         "--share=ipc",
@@ -24,13 +24,13 @@
     ],
     "modules" : [
         {
-            "name" : "cube-timer-gtk",
+            "name" : "cube-timer",
             "builddir" : true,
             "buildsystem" : "meson",
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "file:///home/vallabh/Projects"
+                    "url" : "https://github.com/vallabhvidy/Cube-Timer"
                 }
             ],
             "config-opts" : [

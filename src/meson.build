@@ -2,8 +2,8 @@ pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
 moduledir = pkgdatadir / 'cube_timer_gtk'
 gnome = import('gnome')
 
-gnome.compile_resources('cube-timer-gtk',
-  'cube-timer-gtk.gresource.xml',
+gnome.compile_resources('cube-timer',
+  'cube-timer.gresource.xml',
   gresource_bundle: true,
   install: true,
   install_dir: pkgdatadir,
@@ -18,8 +18,8 @@ conf.set('localedir', get_option('prefix') / get_option('localedir'))
 conf.set('pkgdatadir', pkgdatadir)
 
 configure_file(
-  input: 'cube-timer-gtk.in',
-  output: 'cube-timer-gtk',
+  input: 'cube-timer.in',
+  output: 'cube-timer',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir'),
