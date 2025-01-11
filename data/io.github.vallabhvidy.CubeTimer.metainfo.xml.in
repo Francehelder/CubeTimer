@@ -17,15 +17,15 @@
   </branding>
   <screenshots>
     <screenshot type="default" xml:lang="en">
-      <image>https://github.com/vallabhvidy/Cube-Timer/blob/main/data/screenshots/ss1.png</image>
+      <image>https://github.com/vallabhvidy/CubeTimer/raw/main/data/screenshots/ss1.png</image>
       <caption>Main window</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://github.com/vallabhvidy/Cube-Timer/blob/main/data/screenshots/ss2.png</image>
+      <image>https://github.com/vallabhvidy/CubeTimer/raw/main/data/screenshots/ss2.png</image>
       <caption>When the timer is running</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://github.com/vallabhvidy/Cube-Timer/blob/main/data/screenshots/ss3.png</image>
+      <image>https://github.com/vallabhvidy/CubeTimer/raw/main/data/screenshots/ss3.png</image>
       <caption>Mark a solve as DNF or delete it</caption>
     </screenshot>
   </screenshots>
@@ -36,9 +36,9 @@
       </description>
     </release>
   </releases>
-  <url type="homepage">https://github.com/vallabhvidy/Cube-Timer</url>
-  <url type="bugtracker">https://github.com/vallabhvidy/Cube-Timer/issues</url>
-  <url type="vcs-browser">https://github.com/vallabhvidy/Cube-Timer</url>
+  <url type="homepage">https://github.com/vallabhvidy/CubeTimer</url>
+  <url type="bugtracker">https://github.com/vallabhvidy/CubeTimer/issues</url>
+  <url type="vcs-browser">https://github.com/vallabhvidy/CubeTimer</url>
   <launchable type="desktop-id">io.github.vallabhvidy.CubeTimer.desktop</launchable>
   <developer id="io.github.vallabhvidy">
     <name translate="no">Vallabh Vidyasagar</name>

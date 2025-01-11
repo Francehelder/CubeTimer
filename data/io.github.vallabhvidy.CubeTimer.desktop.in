@@ -4,5 +4,6 @@ Exec=cube-timer
 Icon=io.github.vallabhvidy.CubeTimer
 Terminal=false
 Type=Application
-Categories=GTK;
+Categories=GTK;Utility;
+Keywords=solve;timer;rubiks;cube;
 StartupNotify=true
