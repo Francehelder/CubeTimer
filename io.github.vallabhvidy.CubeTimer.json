@@ -30,8 +30,8 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://github.com/vallabhvidy/Cube-Timer",
-                    "branch" : "main"
+                    "url" : "https://github.com/vallabhvidy/CubeTimer",
+                    "tag" : "main"
                 }
             ],
             "config-opts" : [

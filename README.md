@@ -24,6 +24,6 @@ When the project successfully ran, you can create a Flatpak-bundle on the buildc
 
 ## Feedback and bug reports
 
-If you found an issue or have general feedback, please file an issue
+If you found an issue or have general feedback, please file an issue.
 
 
