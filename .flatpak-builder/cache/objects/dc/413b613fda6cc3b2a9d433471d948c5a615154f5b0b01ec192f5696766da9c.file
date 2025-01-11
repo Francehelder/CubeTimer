@@ -1,0 +1,28 @@
+#!/usr/bin/python3
+
+
+import os
+import sys
+import signal
+import locale
+import gettext
+
+VERSION = '0.1.0'
+pkgdatadir = '/app/share/cube-timer'
+localedir = '/app/share/locale'
+
+sys.path.insert(1, pkgdatadir)
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+locale.bindtextdomain('cube-timer', localedir)
+locale.textdomain('cube-timer')
+gettext.install('cube-timer', localedir)
+
+if __name__ == '__main__':
+    import gi
+
+    from gi.repository import Gio
+    resource = Gio.Resource.load(os.path.join(pkgdatadir, 'cube-timer.gresource'))
+    resource._register()
+
+    from cube_timer_gtk import main
+    sys.exit(main.main(VERSION))

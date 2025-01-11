@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=cube-timer
+Name=Cube Timer
 Exec=cube-timer
 Icon=io.github.vallabhvidy.CubeTimer
 Terminal=false
