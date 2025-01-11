@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=cube-timer
-Exec=cube-timer
-Icon=io.github.vallabhvidy.CubeTimer
-Terminal=false
-Type=Application
-Categories=GTK;
-StartupNotify=true
