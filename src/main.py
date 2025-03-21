@@ -35,10 +35,10 @@ class CubeTimerApplication(Adw.Application):
     def on_about_action(self, widget, _):
         """Callback for the app.about action."""
         about = Adw.AboutWindow(transient_for=self.props.active_window,
-                                application_name='cube-timer',
+                                application_name='Cube Timer',
                                 application_icon='io.github.vallabhvidy.CubeTimer',
                                 developer_name='vallabhvidy',
-                                version='0.1.0',
+                                version='0.1.1',
                                 developers=['vallabhvidy'],
                                 copyright='© 2024 vallabhvidy')
         about.present()

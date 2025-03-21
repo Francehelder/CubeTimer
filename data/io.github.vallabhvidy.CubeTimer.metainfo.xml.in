@@ -35,6 +35,11 @@
         <p>First release of Cube Timer. Has 3x3 scramble and supports storing times and finding average of last 5 and 12 solves.</p>
       </description>
     </release>
+    <release version="0.1.1" date="2025-03-21">
+      <description translate="no">
+        <p>Update to GNOME 48 runtime.</p>
+      </description>
+    </release>
   </releases>
   <url type="homepage">https://github.com/vallabhvidy/CubeTimer</url>
   <url type="bugtracker">https://github.com/vallabhvidy/CubeTimer/issues</url>
