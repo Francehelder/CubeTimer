@@ -1,0 +1,148 @@
+# Russian translations for cube-timer package.
+# Copyright (C) 2025 THE cube-timer'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the cube-timer package.
+# Automatically generated, 2025.
+# David Sultaniiazov <x1z53@alt-gnome.ru>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cube-timer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-28 21:55+0300\n"
+"PO-Revision-Date: 2025-04-28 21:59+0300\n"
+"Last-Translator: David Sultaniiazov <x1z53@alt-gnome.ru>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Gtranslator 48.0\n"
+
+#: data/io.github.vallabhvidy.CubeTimer.desktop.in:3
+#: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:6 src/window.ui:16
+msgid "Cube Timer"
+msgstr "Cube Timer"
+
+#: data/io.github.vallabhvidy.CubeTimer.desktop.in:9
+msgid "solve;timer;rubiks;cube;"
+msgstr "solve;timer;rubiks;cube;"
+
+#: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:7
+msgid "3x3 Rubiks Cube timer"
+msgstr "Таймер для кубика Рубика 3x3"
+
+#: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:9
+msgid ""
+"Cube Timer is a simple 3x3 Rubiks Cube Timer application for the gnome "
+"desktop. Just long press the space-bar and start solving!"
+msgstr ""
+"Cube Timer — это простой таймер для кубика Рубика 3x3 для рабочего окружения "
+"GNOME. Просто долго жмите на клавишу Пробел и начинайте собирать!"
+
+#: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:21
+msgid "Main window"
+msgstr "Главное окно"
+
+#: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:25
+msgid "When the timer is running"
+msgstr "Когда таймер запущен"
+
+#: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:29
+msgid "Mark a solve as DNF or delete it"
+msgstr "Пометить сборку как DNF (не законченную) или удалить"
+
+#: src/gtk/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Общее"
+
+#: src/gtk/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Start Timer"
+msgstr "Запустить таймер"
+
+#: src/gtk/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Показать клавиатурные сокращения"
+
+#: src/gtk/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Выйти"
+
+#: src/score.py:91
+msgid "Sr."
+msgstr "Но."
+
+#: src/score.py:92
+msgid "Time"
+msgstr "Время"
+
+#: src/score.py:93
+msgid "ao5"
+msgstr "ao5"
+
+#: src/score.py:94
+msgid "ao12"
+msgstr "ao12"
+
+#: src/score.py:123
+msgid "Solve No. {index + 1}"
+msgstr "Сборка Но. {index + 1}"
+
+#: src/score.py:123
+msgid ""
+"Scramble:- {item.get('scramble')}\n"
+"\n"
+"Time:- {item.get('time')}"
+msgstr ""
+"Разборка:- {item.get('scramble')}\n"
+"\n"
+"Время:- {item.get('time')}"
+
+#: src/score.py:124
+msgid "Mark DNF"
+msgstr "Пометить как DNF (не завершённое)"
+
+#: src/score.py:125
+msgid "Delete"
+msgstr "Удалить"
+
+#: src/score.py:126
+msgid "Cancel"
+msgstr "Отменить"
+
+#: src/score.py:222
+msgid "Session {len(self.scores.keys())+1}"
+msgstr "Сессия {len(self.scores.keys())+1}"
+
+#: src/score.py:231
+msgid "Session {i+1}"
+msgstr "Сессия {i+1}"
+
+#: src/scramble.py:42
+msgid "Enter scramble length:- "
+msgstr "Ввести длину разборки:- "
+
+#: src/window.ui:28
+msgid "Menu"
+msgstr "Меню"
+
+#: src/window.ui:54
+msgid "Content"
+msgstr "Содержание"
+
+#: src/window.ui:65
+msgid "Toggle Sidebar"
+msgstr "Переключить боковую панель"
+
+#: src/window.ui:111
+msgid "_Keyboard Shortcuts"
+msgstr "_Клавиатурные сокращения"
+
+#: src/window.ui:115
+msgid "_About Cube Timer"
+msgstr "_О Cube Timer"

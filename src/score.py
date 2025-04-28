@@ -20,10 +20,10 @@ class Scores(GObject.Object):
         self.time = time
         self.ao5 = ao5
         self.ao12 = ao12
-        
+
 class Session(GObject.Object):
     name: str = GObject.Property(type=str)
-    
+
     def __init__(self, name: str):
         super().__init__()
         self.name = name
@@ -88,10 +88,10 @@ class ScoresColumnViewBox(Gtk.Box):
         fact3.connect("bind", f_bind3)
         fact4.connect("bind", f_bind4)
 
-        col1 = Gtk.ColumnViewColumn(title="Sr.", factory=fact1)
-        col2 = Gtk.ColumnViewColumn(title="Time", factory=fact2)
-        col3 = Gtk.ColumnViewColumn(title="ao5", factory=fact3)
-        col4 = Gtk.ColumnViewColumn(title="ao12", factory=fact4)
+        col1 = Gtk.ColumnViewColumn(title=_("Sr."), factory=fact1)
+        col2 = Gtk.ColumnViewColumn(title=_("Time"), factory=fact2)
+        col3 = Gtk.ColumnViewColumn(title=_("ao5"), factory=fact3)
+        col4 = Gtk.ColumnViewColumn(title=_("ao12"), factory=fact4)
 
         col1.set_fixed_width(25)
         col2.set_fixed_width(75)
@@ -102,32 +102,32 @@ class ScoresColumnViewBox(Gtk.Box):
         self.scores_column_view.append_column(col2)
         self.scores_column_view.append_column(col3)
         self.scores_column_view.append_column(col4)
-        
+
         self.fetch_scores()
         self.load_session_init()
         self.load_scores(self.current_session)
-        
+
         self.dropdown.connect('notify::selected', self.on_session_changed)
-        
+
         self.scores_column_view.set_single_click_activate(True)
         self.scores_column_view.connect("activate", self.on_click)
-        
+
     def on_click(self, widget, index):
         def on_response(widget, response):
             if response == 'delete':
                 self.delete_index(index)
             elif response == "dnf":
                 self.dnf_index(index)
-        
+
         item = self.scores[self.current_session][index]
-        alert = Adw.AlertDialog.new(f"Solve No. {index + 1}", f"Scramble:- {item.get('scramble')}\n\nTime:- {item.get('time')}")
-        alert.add_response("dnf", "Mark DNF")
-        alert.add_response("delete", "Delete")
-        alert.add_response("cancel", "Cancel")
+        alert = Adw.AlertDialog.new(_(f"Solve No. {index + 1}"), _(f"Scramble:- {item.get('scramble')}\n\nTime:- {item.get('time')}"))
+        alert.add_response("dnf", _("Mark DNF"))
+        alert.add_response("delete", _("Delete"))
+        alert.add_response("cancel", _("Cancel"))
         alert.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
         alert.present()
         alert.connect('response', on_response)
-        
+
     def delete_index(self, index):
         self.scores[self.current_session].pop(index)
         select = self.scores_column_view.get_model()
@@ -135,15 +135,15 @@ class ScoresColumnViewBox(Gtk.Box):
         # model.remove(index)
         # for i in range(1, len(model)+1):
         #     model[i-1].index = i
-        
-        l = len(model)  
+
+        l = len(model)
         temp = []
         for i in range(index + 1, l):
             temp.append(Scores(i, model[i].time, model[i].ao5, model[i].ao12))
-            
+
         for i in range(index, l):
             model.remove(index)
-            
+
         i = index
         j = 0
         while i < len(temp) + index and j < 5:
@@ -154,7 +154,7 @@ class ScoresColumnViewBox(Gtk.Box):
             temp[i-index].ao5 = ao5
             i += 1
             j += 1
-            
+
         i = index
         j = 0
         while i < len(temp) + index and j < 12:
@@ -165,29 +165,29 @@ class ScoresColumnViewBox(Gtk.Box):
             temp[i-index].ao12 = ao12
             i += 1
             j += 1
-            
+
         for i in temp:
             model.append(i)
-            
+
         select.set_model(model)
         self.scores_column_view.set_model(select)
         # select.set_selected(len(model)-1)
         self.save_scores()
-        
+
     def dnf_index(self, index):
         self.scores[self.current_session][index]["time"] = "dnf"
         select = self.scores_column_view.get_model()
         model = select.get_model()
-        
+
         model[index].time = "dnf"
-        l = len(model)  
+        l = len(model)
         temp = []
         for i in range(index, l):
             temp.append(Scores(i+1, model[i].time, model[i].ao5, model[i].ao12))
-            
+
         for i in range(index, l):
             model.remove(index)
-            
+
         i = index
         j = 0
         while i < len(temp) + index and j < 5:
@@ -198,7 +198,7 @@ class ScoresColumnViewBox(Gtk.Box):
             temp[i-index].ao5 = ao5
             i += 1
             j += 1
-            
+
         i = index
         j = 0
         while i < len(temp) + index and j < 12:
@@ -209,18 +209,18 @@ class ScoresColumnViewBox(Gtk.Box):
             temp[i-index].ao12 = ao12
             i += 1
             j += 1
-            
+
         for i in temp:
             model.append(i)
-        
-        
+
+
         select.set_model(model)
         self.scores_column_view.set_model(select)
         self.save_scores()
-        
+
     def on_clicked(self, widget):
-        self.add_session(f"Session {len(self.scores.keys())+1}")
-        
+        self.add_session(_(f"Session {len(self.scores.keys())+1}"))
+
     def on_delete(self, widget): # ??!!
         model = self.dropdown.get_model()
         for i in range(len(model)):
@@ -228,9 +228,9 @@ class ScoresColumnViewBox(Gtk.Box):
                 model.erase(i)
                 break
         for i in range(len(model)):
-            model[i].name = f"Session {i+1}"
+            model[i].name = _(f"Session {i+1}")
         self.dropdown.set_model()
-        
+
     def add_session(self, session):
         self.scores[session] = []
         model = self.dropdown.get_model()
@@ -238,18 +238,18 @@ class ScoresColumnViewBox(Gtk.Box):
         self.dropdown.set_model(model)
         # self.dropdown.set_selected(len(model)-1)
         self.load_scores(session)
-        
+
     def on_session_changed(self, widget, arg2):
         model = self.dropdown.get_model()
         self.load_scores(model[self.dropdown.get_selected()].name)
-    
+
     def load_session_init(self):
         # print(self.button.get_icon_name())
         def f_setup(fact, item):
             label = Gtk.Label(halign=Gtk.Align.START)
             label.set_selectable(False)
             item.set_child(label)
-        
+
         model = Gio.ListStore()
         fact = Gtk.SignalListItemFactory()
         fact.connect("setup", f_setup)
@@ -267,7 +267,7 @@ class ScoresColumnViewBox(Gtk.Box):
             self.scores["Session 1"] = []
             self.dropdown.set_model(model)
         self.current_session = model[len(model)-1].name
-        
+
     def load_scores(self, session):
         if self.current_session == session:
             store = self.scores_column_view.get_model()
@@ -287,18 +287,18 @@ class ScoresColumnViewBox(Gtk.Box):
         ss.set_model(model)
         self.scores_column_view.set_model(ss)
         self.save_scores()
-        
+
     def add_score(self, time, min, sec, mili, scramble, ao5 = "", ao12 = ""):
         if ao5 == "":
             ao5 = self.calc_ao(5, min, sec, mili, self.current_session, len(self.scores[self.current_session]))
-        if ao12 == "":    
+        if ao12 == "":
             ao12 = self.calc_ao(12, min, sec, mili, self.current_session, len(self.scores[self.current_session]))
         self.scores[self.current_session].append({"time": time, "ao5": ao5, "ao12": ao12, "scramble": scramble, "min": min, "sec": sec, "mili": mili})
         self.load_scores(self.current_session)
         self.save_scores()
         model = self.scores_column_view.get_model()
         model.select_item(len(self.scores[self.current_session])-1, 1)
-        
+
     def calc_ao(self, n, min, sec, mili, session, l, time = ""):
         ao = "-"
         dnf = 0
@@ -323,7 +323,7 @@ class ScoresColumnViewBox(Gtk.Box):
             return ao
         else:
             return "dnf"
-        
+
     def fetch_scores(self):
         with open(scores_file_path, 'a+') as scores_list:
             scores_list.seek(0)
@@ -331,9 +331,7 @@ class ScoresColumnViewBox(Gtk.Box):
                 self.scores = json.load(scores_list)
                 self.load_session_init()
                 self.load_scores(self.current_session)
-        
+
     def save_scores(self):
         with open(scores_file_path, 'w') as scores_list:
             json.dump(self.scores, scores_list)
-
-
