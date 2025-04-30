@@ -40,5 +40,11 @@ class CubeTimerLabel(Gtk.Label):
         
 
     def set_label(self, color=init_theme()):
-        self.set_markup(f"<span font='{self.font_size}' color='{color}'>{self.timer.min:02d}:{self.timer.sec:02d}.{self.timer.milisec:02d}</span>")
+        self.set_markup("<span font='{font_size}' color='{color}'>{minute:02d}:{second:02d}.{milisec:02d}</span>".format(
+            font_size=self.font_size,
+            color=color,
+            minute=self.timer.min,
+            second=self.timer.sec,
+            milisec=self.timer.milisec
+        ))
 

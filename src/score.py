@@ -120,7 +120,7 @@ class ScoresColumnViewBox(Gtk.Box):
                 self.dnf_index(index)
 
         item = self.scores[self.current_session][index]
-        alert = Adw.AlertDialog.new(_(f"Solve No. {index + 1}"), _(f"Scramble:- {item.get('scramble')}\n\nTime:- {item.get('time')}"))
+        alert = Adw.AlertDialog.new(_("Solve No. {idx}").format(idx=index+1), _("Scramble:- {scramble}\n\nTime:- {time}").format(scramble=item.get('scramble'), time=item.get('time')))
         alert.add_response("dnf", _("Mark DNF"))
         alert.add_response("delete", _("Delete"))
         alert.add_response("cancel", _("Cancel"))
@@ -219,7 +219,7 @@ class ScoresColumnViewBox(Gtk.Box):
         self.save_scores()
 
     def on_clicked(self, widget):
-        self.add_session(_(f"Session {len(self.scores.keys())+1}"))
+        self.add_session(_("Session {idx}").format(idx=len(self.scores.keys())+1))
 
     def on_delete(self, widget): # ??!!
         model = self.dropdown.get_model()
@@ -228,7 +228,7 @@ class ScoresColumnViewBox(Gtk.Box):
                 model.erase(i)
                 break
         for i in range(len(model)):
-            model[i].name = _(f"Session {i+1}")
+            model[i].name = _("Session {idx}").format(idx=i+1)
         self.dropdown.set_model()
 
     def add_session(self, session):
@@ -318,7 +318,7 @@ class ScoresColumnViewBox(Gtk.Box):
             amin = t // 6000
             asec = (t % 6000) // 100
             amili = (t - amin * 6000 - asec * 100)
-            ao = f"{amin:02d}:{asec:02d}.{amili:02d}"
+            ao = "{amin:02d}:{asec:02d}.{amili:02d}".format(amin=amin, asec=asec, amili=amili)
         if 2 * dnf < n:
             return ao
         else:

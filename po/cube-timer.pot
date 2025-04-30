@@ -85,14 +85,14 @@ msgid "ao12"
 msgstr ""
 
 #: src/score.py:123
-msgid "Solve No. {index + 1}"
+msgid "Solve No. {idx}"
 msgstr ""
 
 #: src/score.py:123
 msgid ""
-"Scramble:- {item.get('scramble')}\n"
+"Scramble:- {scramble}\n"
 "\n"
-"Time:- {item.get('time')}"
+"Time:- {time}"
 msgstr ""
 
 #: src/score.py:124
@@ -108,11 +108,11 @@ msgid "Cancel"
 msgstr ""
 
 #: src/score.py:222
-msgid "Session {len(self.scores.keys())+1}"
+msgid "Session {idx}"
 msgstr ""
 
 #: src/score.py:231
-msgid "Session {i+1}"
+msgid "Session {idx}"
 msgstr ""
 
 #: src/scramble.py:42

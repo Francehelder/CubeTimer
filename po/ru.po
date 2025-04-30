@@ -90,18 +90,18 @@ msgid "ao12"
 msgstr "ao12"
 
 #: src/score.py:123
-msgid "Solve No. {index + 1}"
-msgstr "Сборка Но. {index + 1}"
+msgid "Solve No. {idx}"
+msgstr "Сборка Но. {idx}"
 
 #: src/score.py:123
 msgid ""
-"Scramble:- {item.get('scramble')}\n"
+"Scramble:- {scramble}\n"
 "\n"
-"Time:- {item.get('time')}"
+"Time:- {time}"
 msgstr ""
-"Разборка:- {item.get('scramble')}\n"
+"Разборка:- {scramble}\n"
 "\n"
-"Время:- {item.get('time')}"
+"Время:- {time}"
 
 #: src/score.py:124
 msgid "Mark DNF"
@@ -116,12 +116,8 @@ msgid "Cancel"
 msgstr "Отменить"
 
 #: src/score.py:222
-msgid "Session {len(self.scores.keys())+1}"
-msgstr "Сессия {len(self.scores.keys())+1}"
-
-#: src/score.py:231
-msgid "Session {i+1}"
-msgstr "Сессия {i+1}"
+msgid "Session {idx}"
+msgstr "Сессия {idx}"
 
 #: src/scramble.py:42
 msgid "Enter scramble length:- "

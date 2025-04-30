@@ -37,7 +37,15 @@
     </release>
     <release version="0.1.1" date="2025-03-21">
       <description translate="no">
-        <p>Update to GNOME 48 runtime.</p>
+        <p>Small update.</p>
+        <ul>
+          <li>Add template file for translation (David Sultaniiazov).</li>
+          <li>Update to GNOME 48 runtime.</li>
+        </ul>
+        <p>Updated/added translations</p>
+        <ul>
+          <li>Russian (David Sultaniiazov)</li>
+        </ul>
       </description>
     </release>
   </releases>
