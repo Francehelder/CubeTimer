@@ -35,7 +35,7 @@
         <p>First release of Cube Timer. Has 3x3 scramble and supports storing times and finding average of last 5 and 12 solves.</p>
       </description>
     </release>
-    <release version="0.1.1" date="2025-03-21">
+    <release version="0.1.1" date="2025-04-30">
       <description translate="no">
         <p>Small update.</p>
         <ul>
