@@ -39,4 +39,4 @@ class Scramble(Gtk.Label):
 
 
 if __name__ == "__main__":
-    print(scramble_gen(int(input("Enter scramble length:- "))))
+    print(scramble_gen(int(input(_("Enter scramble length:- ")))))
