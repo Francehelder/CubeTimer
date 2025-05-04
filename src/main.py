@@ -60,7 +60,7 @@ class CubeTimerApplication(Adw.Application):
         action.connect("activate", callback)
         self.add_action(action)
         if shortcuts:
-            self.set_accels_for_action(f"app.{name}", shortcuts)
+            self.set_accels_for_action("app.{name}".format(name=name), shortcuts)
 
 
 def main(version):

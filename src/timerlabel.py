@@ -2,19 +2,6 @@ from gi.repository import Gtk, Gdk, Adw
 
 from .timer import CubeTimer
 
-
-def init_theme():
-    settings = Gtk.Settings.get_default()
-
-    prefer_dark_theme = settings.get_property("gtk-application-prefer-dark-theme")
-
-    if prefer_dark_theme:
-        return "black"
-    else:
-        return "white"
-
-    
-
 @Gtk.Template(resource_path='/io/github/vallabhvidy/CubeTimer/timerlabel.ui')
 class CubeTimerLabel(Gtk.Label):
     __gtype_name__ = 'CubeTimerLabel'
@@ -25,22 +12,24 @@ class CubeTimerLabel(Gtk.Label):
     def __init__(self, **kwargs):
         super().__init__(**kwargs, focusable = True, can_focus = True)
         self.font_size = 100
+        self.color = "white" if Adw.StyleManager.get_default().get_color_scheme() == Adw.ColorScheme.PREFER_DARK else "black"
+        self.set_color()
         self.set_label()
         self.timer.update_label = self.set_label
         settings = Gtk.Settings.get_default()
-        settings.connect("notify::gtk-application-prefer-dark-theme", self.check_theme, None)
+        settings.connect("notify::gtk-application-prefer-dark-theme", self.theme_change)
         
-    def check_theme(self, settings, pspec, user_data):
+    def theme_change(self, source, pspec):
+        self.set_color()
 
-        prefer_dark_theme = settings.get_property("gtk-application-prefer-dark-theme")
-        if prefer_dark_theme:
-            self.set_label("white")
-        else:
-            self.set_label("black")
-        
+    def set_color(self):
+        self.color = "white" if self.color == "black" else "black"
+        self.set_label()
 
-    def set_label(self, color=init_theme()):
-        self.set_markup("<span font='{font_size}' color='{color}'>{minute:02d}:{second:02d}.{milisec:02d}</span>".format(
+    def set_label(self, color=None):
+        color = self.color if color == None else color
+        time_format = _("<span font='{font_size}' color='{color}'>{minute:02d}:{second:02d}.{milisec:02d}</span>")
+        self.set_markup(time_format.format(
             font_size=self.font_size,
             color=color,
             minute=self.timer.min,
