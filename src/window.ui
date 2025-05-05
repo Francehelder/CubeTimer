@@ -7,8 +7,8 @@
     <property name="default-height">800</property>
     <property name="content">
       <object class="AdwOverlaySplitView" id="split_view">
-        <property name="min-sidebar-width">264</property>
-        <property name="max-sidebar-width">264</property>
+        <property name="min-sidebar-width">283</property>
+        <property name="max-sidebar-width">283</property>
         <property name="show-sidebar" bind-source="show_sidebar_button" bind-property="active" bind-flags="sync-create"/>
         <property name="sidebar">
           
@@ -16,7 +16,6 @@
             <property name="title" translatable="true">Cube Timer</property>
             <property name="tag">sidebar</property>
             <property name="child">
-              
               <object class="AdwToolbarView">
                 <child type="top">
                   <object class="AdwHeaderBar">
@@ -32,7 +31,7 @@
                   </object>
                 </child>
                 <property name="content">
-                  <object class="GtkScrolledWindow">
+                  <object class="GtkScrolledWindow" id="scores_scrolled_view">
                     <property name="hexpand">true</property>
                     <property name="vexpand">true</property>
                     <property name="margin-top">6</property>
@@ -40,7 +39,7 @@
                     <property name="margin-start">6</property>
                     <property name="margin-end">6</property>
                     <property name="child">
-                  <object class="ScoresColumnViewBox" id="scores_box"></object>
+                      <object class="ScoresColumnViewBox" id="scores_box"></object>
                     </property>
                 </object>
               </property>

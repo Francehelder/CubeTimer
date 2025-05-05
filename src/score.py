@@ -102,6 +102,7 @@ class ScoresColumnViewBox(Gtk.Box):
         self.scores_column_view = Gtk.ColumnView()
         self.store = Gio.ListStore()
         self.append(self.scores_column_view)
+        self.vadj = None
 
         self.select = Gtk.SingleSelection()
         self.select.set_model(self.store)
@@ -147,17 +148,15 @@ class ScoresColumnViewBox(Gtk.Box):
         col3 = Gtk.ColumnViewColumn(title=_("ao5"), factory=fact3)
         col4 = Gtk.ColumnViewColumn(title=_("ao12"), factory=fact4)
 
-        col1.set_fixed_width(25)
-        col2.set_fixed_width(75)
-        col3.set_fixed_width(75)
-        col4.set_fixed_width(75)
+        col1.set_fixed_width(30)
+        col2.set_fixed_width(80)
+        col3.set_fixed_width(80)
+        col4.set_fixed_width(80)
 
         self.scores_column_view.append_column(col1)
         self.scores_column_view.append_column(col2)
         self.scores_column_view.append_column(col3)
         self.scores_column_view.append_column(col4)
-
-        # self.dropdown.connect('notify::selected', self.on_session_changed)
 
         self.scores_column_view.set_single_click_activate(False)
         self.scores_column_view.connect("activate", self.on_click)
@@ -165,9 +164,11 @@ class ScoresColumnViewBox(Gtk.Box):
         self.load_scores(self.current_session)
 
     def add_score(self, time, scramble):
-        score = {"time": time, "scramble": scramble}
+        score = {"time": time+1, "scramble": scramble}
         self.model.add_score(self.current_session, score)
         self.store.append(Scores(len(self.store)))
+        self.select.set_selected(len(self.store)-1)
+        GLib.idle_add(lambda: self.vadj.set_value(self.vadj.get_upper() - self.vadj.get_page_size()))
 
     def on_click(self, widget, index):
         def on_response(widget, response):
