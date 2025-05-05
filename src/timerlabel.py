@@ -1,6 +1,7 @@
 from gi.repository import Gtk, Gdk, Adw
 
 from .timer import CubeTimer
+from .utils import time_string
 
 @Gtk.Template(resource_path='/io/github/vallabhvidy/CubeTimer/timerlabel.ui')
 class CubeTimerLabel(Gtk.Label):
@@ -28,12 +29,12 @@ class CubeTimerLabel(Gtk.Label):
 
     def set_label(self, color=None):
         color = self.color if color == None else color
-        time_format = _("<span font='{font_size}' color='{color}'>{minute:02d}:{second:02d}.{milisec:02d}</span>")
+        time = time_string(self.timer.time)
+        time = time if time != "DNF" else "00:00.00"
+        time_format = _("<span font='{font_size}' color='{color}'>{time}</span>")
         self.set_markup(time_format.format(
             font_size=self.font_size,
             color=color,
-            minute=self.timer.min,
-            second=self.timer.sec,
-            milisec=self.timer.milisec
+            time=time
         ))
 

@@ -12,9 +12,7 @@ class CubeTimer(GObject.Object):
 
     def __init__(self, update_label, **kwargs):
         super().__init__(**kwargs)
-        self.min = 0
-        self.sec = 0
-        self.milisec = 0
+        self.time = 0
         self.timer_running = False
         self.space_pressed = False
         self.space_released = True
@@ -31,13 +29,7 @@ class CubeTimer(GObject.Object):
         GLib.timeout_add(10, self.update_timer)
 
     def update_timer(self):
-        self.milisec += 1
-        if self.milisec == 100:
-            self.sec += 1
-            self.milisec = 0
-        if self.sec == 60:
-            self.min += 1
-            self.sec = 0
+        self.time += 1
         self.update_label()
 
         return self.timer_running
@@ -47,7 +39,7 @@ class CubeTimer(GObject.Object):
         self.sidebar_button.set_visible(True)
         self.timer_running = False
         self.split_view.set_show_sidebar(state)
-        self.update_scores("{minute:02d}:{sec:02d}.{milisec:02d}".format(minute=self.min, sec=self.sec, milisec=self.milisec), self.min, self.sec, self.milisec, self.scramble.scramble)
+        self.update_scores(self.time, self.scramble.scramble)
 
     def key_press(self, event, keyval, keycode, state):
         if keyval == ord(' '):
@@ -79,7 +71,7 @@ class CubeTimer(GObject.Object):
             self.update_label()
 
     def reset_timer(self):
-        self.min = self.sec = self.milisec = 0
+        self.time = 0
 
 
 
