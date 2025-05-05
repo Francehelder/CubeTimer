@@ -3,6 +3,14 @@
 
 Cube Timer is a 3x3 Rubiks Cube Timer application for the GNOME desktop.
 
+## Installing
+
+<a href='https://flathub.org/apps/io.github.vallabhvidy.CubeTimer'>
+    <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en'/>
+</a>
+
+CubeTimer is available as a flatpak on flathub.
+
 ## Screenshots
 
 ![Screenshot of Cube Timer, displaying a stopped timer](data/screenshots/ss1.png)
