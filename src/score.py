@@ -103,22 +103,6 @@ class ScoresColumnViewBox(Gtk.Box):
         self.store = Gio.ListStore()
         self.append(self.scores_column_view)
 
-        # self.main_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL, spacing = 6)
-        # self.sub_box = Gtk.Box(orientation = Gtk.Orientation.HORIZONTAL, spacing = 6)
-        # self.sub_box.set_homogeneous(False)
-        # self.append(self.main_box)
-        # self.dropdown = Gtk.DropDown.new()
-        # self.dropdown.set_hexpand(True)
-        # self.main_box.append(self.sub_box)
-        # self.sub_box.append(self.dropdown)
-        # self.button = Gtk.Button.new_from_icon_name("list-add")
-        # self.delete = Gtk.Button.new_from_icon_name("list-remove")
-        # self.button.connect("clicked", self.on_clicked)
-        # self.delete.connect("clicked", self.on_delete)
-        # self.sub_box.append(self.button)
-        # self.sub_box.append(self.delete)
-        # self.main_box.append(self.scores_column_view)
-
         self.select = Gtk.SingleSelection()
         self.select.set_model(self.store)
         self.scores_column_view.set_model(self.select)
@@ -223,56 +207,6 @@ class ScoresColumnViewBox(Gtk.Box):
 
         for idx in range(index, len(self.model.get_session(self.current_session))):
             self.store.append(Scores(idx))
-
-    # def on_clicked(self, widget):
-    #     self.add_session(_("Session {idx}").format(idx=len(self.scores.keys())+1))
-
-    # def on_delete(self, widget): # ??!!
-    #     model = self.dropdown.get_model()
-    #     for i in range(len(model)):
-    #         if model[i].name == self.current_model:
-    #             model.erase(i)
-    #             break
-    #     for i in range(len(model)):
-    #         model[i].name = _("Session {idx}").format(idx=i+1)
-    #     self.dropdown.set_model()
-
-    # def add_session(self, session):
-    #     self.scores[session] = []
-    #     model = self.dropdown.get_model()
-    #     model.append(Session(session))
-    #     self.dropdown.set_model(model)
-        # self.dropdown.set_selected(len(model)-1)
-    #     self.load_scores(session)
-
-    # def on_session_changed(self, widget, arg2):
-    #     model = self.dropdown.get_model()
-    #     self.load_scores(model[self.dropdown.get_selected()].name)
-
-    # def load_session_init(self):
-    #     print(self.button.get_icon_name())
-    #     def f_setup(fact, item):
-    #         label = Gtk.Label(halign=Gtk.Align.START)
-    #         label.set_selectable(False)
-    #         item.set_child(label)
-
-    #     model = Gio.ListStore()
-    #     fact = Gtk.SignalListItemFactory()
-    #     fact.connect("setup", f_setup)
-    #     def f_bind(fact, item):
-    #         item.get_child().set_label(str(item.get_item().name))
-    #     fact.connect("bind", f_bind)
-    #     self.dropdown.set_factory(fact)
-    #     print(self.scores.keys())
-    #     for i in self.scores.keys():
-    #         model.append(Session(i))
-    #     if len(model) != 0:
-    #         self.dropdown.set_model(model)
-    #     else:
-    #         model.append(Session("Session 1"))
-    #         self.scores["Session 1"] = []
-    #         self.dropdown.set_model(model)
-    #     self.current_session = model[len(model)-1].name
 
     def load_scores(self, session):
         for idx in range(len(self.model.get_session(session))):
