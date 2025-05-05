@@ -173,13 +173,9 @@ class ScoresColumnViewBox(Gtk.Box):
         self.scores_column_view.append_column(col3)
         self.scores_column_view.append_column(col4)
 
-        # self.fetch_scores()
-        # self.load_session_init()
-        # self.load_scores(self.current_session)
-
         # self.dropdown.connect('notify::selected', self.on_session_changed)
 
-        self.scores_column_view.set_single_click_activate(True)
+        self.scores_column_view.set_single_click_activate(False)
         self.scores_column_view.connect("activate", self.on_click)
 
         self.load_scores(self.current_session)
