@@ -28,8 +28,22 @@
       <image>https://github.com/vallabhvidy/CubeTimer/raw/main/data/screenshots/ss3.png</image>
       <caption>Mark a solve as DNF or delete it</caption>
     </screenshot>
+    <screenshot xml:lang="en">
+      <image>https://github.com/vallabhvidy/CubeTimer/raw/main/data/screenshots/ss4.png</image>
+      <caption>Light Mode</caption>
+    </screenshot>
   </screenshots>
   <releases>
+    <release version="0.1.2" date="2025-05-06">
+      <description translate="no">
+        <ul>
+          <li>Scores table now scrolls automatically to the bottom when new score is added.</li>
+          <li>Minor UI changes.</li>
+          <li>Improved code quality.</li>
+          <li>Updated screenshots.</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.1" date="2025-04-30">
       <description translate="no">
         <p>Small update.</p>
