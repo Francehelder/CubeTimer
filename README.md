@@ -13,9 +13,13 @@ CubeTimer is available as a flatpak on flathub.
 
 ## Screenshots
 
-![Screenshot of Cube Timer, displaying a stopped timer](data/screenshots/ss1.png)
-![Screenshot of Plots, displaying a running timer](data/screenshots/ss2.png)
-![Screenshot of Plots, displaying a running timer](data/screenshots/ss3.png)
+| ![Stopped Timer](data/screenshots/ss1.png)          | ![Running Timer](data/screenshots/ss2.png)          |
+| :--------------------------------------------------:| :--------------------------------------------------:|
+| Stopped Timer                                       | Running Timer                                       |
+
+| ![Score Edit](data/screenshots/ss3.png)             | ![Light Mode](data/screenshots/ss4.png)             |
+| :--------------------------------------------------:| :--------------------------------------------------:|
+| Delete or Mark DNF                                  | Light Mode                                          |
 
 ## How to use
 
