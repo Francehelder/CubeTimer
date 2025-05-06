@@ -15,6 +15,7 @@ class CubeTimerModel:
         self.load()
 
     def load(self):
+        # for backward compatibility
         def modscore(score):
             if "min" not in score:
                 return score
@@ -92,17 +93,17 @@ class Session(GObject.Object):
         super().__init__()
         self.name = name
 
-class ScoresColumnViewBox(Gtk.Box):
-    __gtype_name__ = "ScoresColumnViewBox"
+class ScoresColumnView(Gtk.ScrolledWindow):
+    __gtype_name__ = "ScoresColumnView"
 
     def __init__(self):
 
         self.model = CubeTimerModel()
         self.current_session = "Session 1"
         self.scores_column_view = Gtk.ColumnView()
+        self.scores_column_view.set_reorderable(False)
         self.store = Gio.ListStore()
-        self.append(self.scores_column_view)
-        self.vadj = None
+        self.set_child(self.scores_column_view)
 
         self.select = Gtk.SingleSelection()
         self.select.set_model(self.store)
@@ -148,7 +149,7 @@ class ScoresColumnViewBox(Gtk.Box):
         col3 = Gtk.ColumnViewColumn(title=_("ao5"), factory=fact3)
         col4 = Gtk.ColumnViewColumn(title=_("ao12"), factory=fact4)
 
-        col1.set_fixed_width(30)
+        col1.set_fixed_width(35)
         col2.set_fixed_width(80)
         col3.set_fixed_width(80)
         col4.set_fixed_width(80)
@@ -163,12 +164,16 @@ class ScoresColumnViewBox(Gtk.Box):
 
         self.load_scores(self.current_session)
 
+    def scroll_to_bottom(self):
+        vadj = self.get_vadjustment()
+        GLib.timeout_add(30, lambda: (vadj.set_value(vadj.get_upper()) and False))
+
     def add_score(self, time, scramble):
         score = {"time": time+1, "scramble": scramble}
         self.model.add_score(self.current_session, score)
         self.store.append(Scores(len(self.store)))
         self.select.set_selected(len(self.store)-1)
-        GLib.idle_add(lambda: self.vadj.set_value(self.vadj.get_upper() - self.vadj.get_page_size()))
+        self.scroll_to_bottom()
 
     def on_click(self, widget, index):
         def on_response(widget, response):

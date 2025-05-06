@@ -7,11 +7,10 @@
     <property name="default-height">800</property>
     <property name="content">
       <object class="AdwOverlaySplitView" id="split_view">
-        <property name="min-sidebar-width">283</property>
-        <property name="max-sidebar-width">283</property>
+        <property name="min-sidebar-width">287</property>
+        <property name="max-sidebar-width">287</property>
         <property name="show-sidebar" bind-source="show_sidebar_button" bind-property="active" bind-flags="sync-create"/>
         <property name="sidebar">
-          
           <object class="AdwNavigationPage">
             <property name="title" translatable="true">Cube Timer</property>
             <property name="tag">sidebar</property>
@@ -31,30 +30,25 @@
                   </object>
                 </child>
                 <property name="content">
-                  <object class="GtkScrolledWindow" id="scores_scrolled_view">
+                  <object class="ScoresColumnView" id="scores_column_view">
                     <property name="hexpand">true</property>
                     <property name="vexpand">true</property>
                     <property name="margin-top">6</property>
                     <property name="margin-bottom">6</property>
                     <property name="margin-start">6</property>
                     <property name="margin-end">6</property>
-                    <property name="child">
-                      <object class="ScoresColumnViewBox" id="scores_box"></object>
-                    </property>
-                </object>
-              </property>
-            </object>
-        </property>
-        </object>
+                  </object>
+                </property>
+              </object>
+            </property>
+          </object>
         </property>
         <property name="content">
-          
           <object class="AdwNavigationPage">
             <property name="title" translatable="true">Content</property>
             <property name="tag">content</property>
             <property name="child">
               <object class="AdwToolbarView">
-                
                 <child type="top">
                   <object class="AdwHeaderBar" id="header_bar">
                     <property name="show-title">false</property>
