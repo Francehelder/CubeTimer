@@ -1,4 +1,4 @@
-from gi.repository import Gtk, GLib, GObject, Gio, Adw
+from gi.repository import Gtk, GLib, GObject, Gio, Adw, Pango
 from .utils import calc_time, time_string
 import os
 import json
@@ -93,19 +93,29 @@ class Session(GObject.Object):
         super().__init__()
         self.name = name
 
+@Gtk.Template(resource_path='/io/github/vallabhvidy/CubeTimer/score.ui')
 class ScoresColumnView(Gtk.ScrolledWindow):
     __gtype_name__ = "ScoresColumnView"
+
+    scores_column_view = Gtk.Template.Child()
+    dialog = Gtk.Template.Child()
+    time_row = Gtk.Template.Child()
+    scramble_row = Gtk.Template.Child()
 
     def __init__(self):
 
         self.model = CubeTimerModel()
         self.current_session = "Session 1"
-        self.scores_column_view = Gtk.ColumnView()
-        self.scores_column_view.set_reorderable(False)
         self.store = Gio.ListStore()
-        self.set_child(self.scores_column_view)
-
         self.select = Gtk.SingleSelection()
+        self.selected_index = 0
+
+        self.build_column_view()
+        self.build_dialog()
+
+        self.load_scores(self.current_session)
+
+    def build_column_view(self):
         self.select.set_model(self.store)
         self.scores_column_view.set_model(self.select)
 
@@ -159,10 +169,22 @@ class ScoresColumnView(Gtk.ScrolledWindow):
         self.scores_column_view.append_column(col3)
         self.scores_column_view.append_column(col4)
 
-        self.scores_column_view.set_single_click_activate(False)
         self.scores_column_view.connect("activate", self.on_click)
 
-        self.load_scores(self.current_session)
+    def build_dialog(self):
+        def on_response(widget, response):
+            if response == 'delete':
+                self.delete_index(self.selected_index)
+            elif response == "dnf":
+                self.dnf_index(self.selected_index)
+
+        self.dialog.add_response("dnf", _("Mark DNF"))
+        self.dialog.add_response("delete", _("Delete"))
+        self.dialog.add_response("cancel", _("Cancel"))
+
+        self.dialog.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
+        self.dialog.set_response_appearance("dnf", Adw.ResponseAppearance.SUGGESTED)
+        self.dialog.connect('response', on_response)
 
     def scroll_to_bottom(self):
         vadj = self.get_vadjustment()
@@ -176,25 +198,18 @@ class ScoresColumnView(Gtk.ScrolledWindow):
         self.scroll_to_bottom()
 
     def on_click(self, widget, index):
-        def on_response(widget, response):
-            if response == 'delete':
-                self.delete_index(index)
-            elif response == "dnf":
-                self.dnf_index(index)
-
         item = self.model.get_score(self.current_session, index)
+        self.selected_index = index
+
         time = time_string(item['time'])
         scramble = item['scramble']
         alert_string = _("Scramble:- {scramble}\n\nTime:- {time}").format(scramble=scramble, time=time)
-        alert = Adw.AlertDialog.new(_("Solve No. {idx}").format(idx=index+1), alert_string)
-        alert.add_response("cancel", _("Cancel"))
-        alert.add_response("delete", _("Delete"))
-        alert.add_response("dnf", _("Mark DNF"))
-        alert.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
-        alert.set_response_appearance("dnf", Adw.ResponseAppearance.SUGGESTED)
-        alert.set_can_close(True)
-        alert.present()
-        alert.connect('response', on_response)
+
+        self.dialog.set_heading(_("Solve No. {idx}").format(idx=index+1))
+        self.time_row.set_label(time)
+        self.scramble_row.set_title(scramble)
+
+        self.dialog.present(self)
 
     def delete_index(self, index):
         self.model.delete_score(self.current_session, index)

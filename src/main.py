@@ -38,7 +38,7 @@ class CubeTimerApplication(Adw.Application):
                                 application_name='Cube Timer',
                                 application_icon='io.github.vallabhvidy.CubeTimer',
                                 developer_name='vallabhvidy',
-                                version='0.1.1',
+                                version='0.1.3',
                                 developers=['vallabhvidy'],
                                 copyright='© 2024 vallabhvidy')
         about.present()

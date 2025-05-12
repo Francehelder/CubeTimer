@@ -1,7 +1,7 @@
 from gi.repository import Gtk
 from .utils import scramble_gen
 
-number = 25
+number = 20
 
 class Scramble(Gtk.Label):
     __gtype_name__ = 'Scramble'

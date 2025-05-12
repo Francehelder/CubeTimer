@@ -8,7 +8,6 @@ class CubeTimerLabel(Gtk.Label):
     __gtype_name__ = 'CubeTimerLabel'
 
     timer = CubeTimer(lambda: None)
-    
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs, focusable = True, can_focus = True)
