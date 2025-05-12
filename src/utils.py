@@ -37,5 +37,5 @@ def scramble_gen(scramble_length):
         if arr[i-1][0] == arr[i][0]:
             continue
         i += 1
-    scramble = " ".join([a[0]+a[1] for a in arr])
+    scramble = "  ".join([a[0]+a[1] for a in arr])
     return scramble

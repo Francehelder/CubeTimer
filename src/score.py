@@ -49,6 +49,9 @@ class CubeTimerModel:
     def get_score(self, session, index):
         return self.sessions[session][index]
 
+    def get_all_sessions(self):
+        return self.sessions.keys()
+
     def add_score(self, session, score):
         self.sessions[session].append(score)
         self.save()
@@ -94,13 +97,23 @@ class Session(GObject.Object):
         self.name = name
 
 @Gtk.Template(resource_path='/io/github/vallabhvidy/CubeTimer/score.ui')
-class ScoresColumnView(Gtk.ScrolledWindow):
+class ScoresColumnView(Gtk.Box):
     __gtype_name__ = "ScoresColumnView"
 
     scores_column_view = Gtk.Template.Child()
     dialog = Gtk.Template.Child()
     time_row = Gtk.Template.Child()
     scramble_row = Gtk.Template.Child()
+    sessions_drop_down = Gtk.Template.Child()
+    scrolled_window = Gtk.Template.Child()
+    best_time = Gtk.Template.Child()
+    best_mo3 = Gtk.Template.Child()
+    best_ao5 = Gtk.Template.Child()
+    best_ao12 = Gtk.Template.Child()
+    current_time = Gtk.Template.Child()
+    current_mo3 = Gtk.Template.Child()
+    current_ao5 = Gtk.Template.Child()
+    current_ao12 = Gtk.Template.Child()
 
     def __init__(self):
 
@@ -110,10 +123,27 @@ class ScoresColumnView(Gtk.ScrolledWindow):
         self.select = Gtk.SingleSelection()
         self.selected_index = 0
 
+        self.sessions_store = Gio.ListStore()
+
+        self.build_drop_down()
         self.build_column_view()
         self.build_dialog()
 
+        self.min_time = -1
+        self.min_mo3 = -1
+        self.min_ao5 = -1
+        self.min_ao12 = -1
+
         self.load_scores(self.current_session)
+
+    def build_drop_down(self):
+        expr = Gtk.PropertyExpression.new(Session, None, "name")
+        self.sessions_drop_down.set_expression(expr)
+        self.sessions_drop_down.set_model(self.sessions_store)
+        sessions = self.model.get_all_sessions()
+        for session in sessions:
+            self.sessions_store.append(Session(session))
+
 
     def build_column_view(self):
         self.select.set_model(self.store)
@@ -187,7 +217,7 @@ class ScoresColumnView(Gtk.ScrolledWindow):
         self.dialog.connect('response', on_response)
 
     def scroll_to_bottom(self):
-        vadj = self.get_vadjustment()
+        vadj = self.scrolled_window.get_vadjustment()
         GLib.timeout_add(30, lambda: (vadj.set_value(vadj.get_upper()) and False))
 
     def add_score(self, time, scramble):
@@ -196,6 +226,7 @@ class ScoresColumnView(Gtk.ScrolledWindow):
         self.store.append(Scores(len(self.store)))
         self.select.set_selected(len(self.store)-1)
         self.scroll_to_bottom()
+        self.load_stats()
 
     def on_click(self, widget, index):
         item = self.model.get_score(self.current_session, index)
@@ -229,7 +260,58 @@ class ScoresColumnView(Gtk.ScrolledWindow):
         for idx in range(index, len(self.model.get_session(self.current_session))):
             self.store.append(Scores(idx))
 
+    def load_stats(self):
+        sessions = self.model.get_session(self.current_session)
+
+        time = self.model.get_score(self.current_session, len(sessions)-1)["time"]
+        mo3 = self.model.calculate_average(self.current_session, -1, 3)
+        ao5 = self.model.calculate_average(self.current_session, -1, 5)
+        ao12 = self.model.calculate_average(self.current_session, -1, 12)
+
+        self.current_time.set_label(time_string(time))
+        self.current_mo3.set_label(time_string(mo3))
+        self.current_ao5.set_label(time_string(ao5))
+        self.current_ao12.set_label(time_string(ao12))
+
+        self.min_time = min(self.min_time, time) if time > 0 else self.min_time
+        self.min_mo3 = min(self.min_mo3, mo3) if mo3 > 0 else self.min_mo3
+        self.min_ao5 = min(self.min_ao5, ao5) if ao5 > 0 else self.min_ao5
+        self.min_ao12 = min(self.min_ao12, ao12) if ao12 > 0 else self.min_ao12
+
+        self.best_time.set_label(time_string(self.min_time))
+        self.best_mo3.set_label(time_string(self.min_mo3))
+        self.best_ao5.set_label(time_string(self.min_ao5))
+        self.best_ao12.set_label(time_string(self.min_ao12))
+
+
     def load_scores(self, session):
-        for idx in range(len(self.model.get_session(session))):
+        sessions = self.model.get_session(session)
+
+        self.current_session = session
+
+        self.load_stats()
+
+        for idx in range(len(sessions)):
+            time = self.model.get_score(session, idx)["time"]
+            if time > 0:
+                self.min_time = time if self.min_time == -1 else min(time, self.min_time)
+
+            mo3 = self.model.calculate_average(session, idx, 3)
+            if mo3 > 0:
+                self.min_mo3 = mo3 if self.min_mo3 == -1 else min(mo3, self.min_mo3)
+
+            ao5 = self.model.calculate_average(session, idx, 5)
+            if ao5 > 0:
+                self.min_ao5 = ao5 if self.min_ao5 == -1 else min(ao5, self.min_ao5)
+
+            ao12 = self.model.calculate_average(session, idx, 12)
+            if ao12 > 0:
+                self.min_ao12 = ao12 if self.min_ao12 == -1 else min(ao12, self.min_ao12)
+
             self.store.append(Scores(idx))
+
+        self.best_time.set_label(time_string(self.min_time))
+        self.best_mo3.set_label(time_string(self.min_mo3))
+        self.best_ao5.set_label(time_string(self.min_ao5))
+        self.best_ao12.set_label(time_string(self.min_ao12))
 

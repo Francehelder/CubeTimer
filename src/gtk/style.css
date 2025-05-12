@@ -1,11 +1,19 @@
 .timer {
     font-weight: normal;
-    font-family: cantarell-monospace;
+    font-family: sans-serif;
 }
 
 .scramble {
     font-weight: normal;
-    font-family: cantarell-monospace;
+    font-family: sans-serif;
     font-size: 40px;
     color: grey;
+}
+
+.grid {
+    background: #222226;
+    font-weight: bold;
+    font-size: 12px;
+    color: grey;
+    padding: 6px;
 }
