@@ -40,7 +40,7 @@ class CubeTimerApplication(Adw.Application):
                                 developer_name='vallabhvidy',
                                 version='0.1.3',
                                 developers=['vallabhvidy'],
-                                copyright='© 2024 vallabhvidy')
+                                copyright='© 2025 vallabhvidy')
         about.present()
 
     def on_preferences_action(self, widget, _):

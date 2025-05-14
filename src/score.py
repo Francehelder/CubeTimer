@@ -11,7 +11,7 @@ scores_file_path = data_dir / 'scores.json'
 class CubeTimerModel:
     def __init__(self):
         self.path = scores_file_path
-        self.sessions = {"Session 1": []}
+        self.sessions = {}
         self.load()
 
     def load(self):
@@ -30,18 +30,26 @@ class CubeTimerModel:
         try:
             with open(self.path, 'r') as scores_file:
                 sessions = json.load(scores_file)
+                self.sessions["last-session"] = sessions.get("last-session", "Session 1")
                 for session in sessions:
+                    if session == "last-session":
+                        continue
+                    self.sessions[session] = []
                     for score in sessions[session]:
                         self.sessions[session].append(modscore(score))
         except FileNotFoundError:
             print("scores.json not found.")
-            self.sessions = {"Session 1": []}
+            self.sessions = {"Session 1": [], "last-session": "Session 1"}
 
         self.save()
 
     def save(self):
         with open(self.path, "w") as scores_file:
             json.dump(self.sessions, scores_file)
+
+    def set_last_session(self, session):
+        self.sessions["last-session"] = session
+        self.save()
 
     def get_session(self, session):
         return self.sessions[session]
@@ -50,7 +58,24 @@ class CubeTimerModel:
         return self.sessions[session][index]
 
     def get_all_sessions(self):
-        return self.sessions.keys()
+        sessions = [session for session in self.sessions.keys() if session != "last-session" ]
+        return sessions
+
+    def get_last_session(self):
+        return self.sessions["last-session"]
+
+    def add_session(self, session):
+        self.sessions[session] = []
+        self.set_last_session(session)
+        self.save()
+
+    def rename_session(self, new_session, old_session):
+        self.sessions[new_session] = self.sessions.pop(old_session)
+        self.save()
+
+    def remove_session(self, session):
+        self.sessions.pop(session, None)
+        self.save()
 
     def add_score(self, session, score):
         self.sessions[session].append(score)
@@ -114,11 +139,20 @@ class ScoresColumnView(Gtk.Box):
     current_mo3 = Gtk.Template.Child()
     current_ao5 = Gtk.Template.Child()
     current_ao12 = Gtk.Template.Child()
+    add_session_button = Gtk.Template.Child()
+    add_session_dialog = Gtk.Template.Child()
+    session_name = Gtk.Template.Child()
+    rename_session_button = Gtk.Template.Child()
+    rename_session_dialog = Gtk.Template.Child()
+    session_rename = Gtk.Template.Child()
+    remove_session_button = Gtk.Template.Child()
+    remove_session_dialog = Gtk.Template.Child()
 
-    def __init__(self):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
         self.model = CubeTimerModel()
-        self.current_session = "Session 1"
+        self.current_session = self.model.get_last_session()
         self.store = Gio.ListStore()
         self.select = Gtk.SingleSelection()
         self.selected_index = 0
@@ -128,24 +162,158 @@ class ScoresColumnView(Gtk.Box):
         self.build_drop_down()
         self.build_column_view()
         self.build_dialog()
+        self.build_sessions_menu()
 
-        self.min_time = -1
-        self.min_mo3 = -1
-        self.min_ao5 = -1
-        self.min_ao12 = -1
+        self.load_session(self.current_session)
 
-        self.load_scores(self.current_session)
+    def build_sessions_menu(self):
+        def rebuild_drop_down():
+            self.sessions_store.remove_all()
+            sessions = self.model.get_all_sessions()
+            for session in sessions:
+                self.sessions_store.append(Session(session))
+
+        def remove_session(widget, response):
+            print(response)
+            if response != "delete":
+                return
+
+            self.model.remove_session(self.current_session)
+            rebuild_drop_down()
+            if len(self.sessions_store) == 0:
+                self.model.add_session("Session 1")
+                rebuild_drop_down()
+                self.load_session("Session 1")
+            else:
+                self.load_session(self.sessions_store[-1].name)
+
+        def rename_session(widget, response):
+            if response != "rename":
+                return
+
+            session_name = self.session_rename.get_buffer().get_text()
+            self.model.rename_session(session_name, self.current_session)
+            rebuild_drop_down()
+            self.load_session(session_name)
+
+        def add_session(widget, response):
+            if response != "add":
+                return
+
+            session_name = self.session_name.get_buffer().get_text()
+            self.model.add_session(session_name)
+            self.sessions_store.append(Session(session_name))
+            self.load_session(session_name)
+
+        def validate_name(entry):
+            session_name = entry.get_buffer().get_text()
+
+            if len(session_name) == 0 or session_name in self.model.get_all_sessions() or session_name == "last-session":
+                self.add_session_dialog.set_response_enabled("add", False)
+                self.session_name.remove_css_class("success")
+                self.session_name.add_css_class("error")
+            else:
+                self.add_session_dialog.set_response_enabled("add", True)
+                self.session_name.remove_css_class("error")
+                self.session_name.add_css_class("success")
+
+        def validate_rename(entry):
+            session_rename = entry.get_buffer().get_text()
+
+            if len(session_rename) == 0 or session_rename in self.model.get_all_sessions() or session_rename == "last-session":
+                self.rename_session_dialog.set_response_enabled("rename", False)
+                self.session_rename.remove_css_class("success")
+                self.session_rename.add_css_class("error")
+            else:
+                self.rename_session_dialog.set_response_enabled("rename", True)
+                self.session_rename.remove_css_class("error")
+                self.session_rename.add_css_class("success")
+
+        def add_session_button_clicked(button):
+            self.session_name.get_buffer().delete_text(0, -1)
+            self.session_name.remove_css_class("success")
+            self.session_name.remove_css_class("error")
+            self.add_session_dialog.present(button)
+
+        def remove_session_button_clicked(button):
+            self.remove_session_dialog.set_heading(_("Delete {session}?").format(session=self.current_session))
+            self.remove_session_dialog.present(button)
+
+        def rename_session_button_clicked(button):
+            self.session_rename.get_buffer().delete_text(0, -1)
+            self.session_rename.remove_css_class("success")
+            self.session_rename.remove_css_class("error")
+            self.rename_session_dialog.present(button)
+
+        self.add_session_dialog.add_response("add", _("Add"))
+        self.add_session_dialog.set_response_enabled("add", False)
+        self.add_session_dialog.add_response("cancel", _("Cancel"))
+        self.add_session_dialog.set_response_appearance("add", Adw.ResponseAppearance.SUGGESTED)
+        self.add_session_dialog.connect('response', add_session)
+
+        self.remove_session_dialog.add_response("delete", _("Delete"))
+        self.remove_session_dialog.add_response("cancel", _("Cancel"))
+        self.remove_session_dialog.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
+        self.remove_session_dialog.connect('response', remove_session)
+
+        self.rename_session_dialog.add_response("rename", _("Rename"))
+        self.rename_session_dialog.set_response_enabled("rename", False)
+        self.rename_session_dialog.add_response("cancel", _("Cancel"))
+        self.rename_session_dialog.set_response_appearance("rename", Adw.ResponseAppearance.SUGGESTED)
+        self.rename_session_dialog.connect('response', rename_session)
+
+        self.add_session_button.connect("clicked", add_session_button_clicked)
+        self.rename_session_button.connect("clicked", rename_session_button_clicked)
+        self.remove_session_button.connect("clicked", remove_session_button_clicked)
+
+        self.session_name.connect("changed", validate_name)
+        self.session_rename.connect("changed", validate_rename)
 
     def build_drop_down(self):
+        def on_selected_item(dropdown, selected):
+            print(self.current_session)
+            selected_item = self.sessions_drop_down.get_selected_item()
+            if selected_item == None:
+                return
+            self.load_session(selected_item.name)
+
         expr = Gtk.PropertyExpression.new(Session, None, "name")
         self.sessions_drop_down.set_expression(expr)
         self.sessions_drop_down.set_model(self.sessions_store)
         sessions = self.model.get_all_sessions()
         for session in sessions:
             self.sessions_store.append(Session(session))
+        self.sessions_drop_down.connect("notify::selected-item", on_selected_item)
 
+    def load_session(self, session):
+        self.current_session = session
+        self.model.set_last_session(session)
+        if self.sessions_drop_down.get_selected_item().name != self.current_session:
+            self.select_current_session()
+        else:
+            self.load_scores()
+
+    def select_current_session(self):
+        for idx in range(len(self.sessions_store)):
+            if self.sessions_store[idx].name == self.current_session:
+                self.sessions_drop_down.set_selected(idx)
+                return
 
     def build_column_view(self):
+        def on_click(widget, index):
+            item = self.model.get_score(self.current_session, index)
+            self.selected_index = index
+
+            time = time_string(item['time'])
+            scramble = item['scramble']
+            alert_string = _("Scramble:- {scramble}\n\nTime:- {time}").format(scramble=scramble, time=time)
+
+            self.dialog.set_heading(_("Solve No. {idx}").format(idx=index+1))
+            self.time_row.set_label(time)
+            self.scramble_row.set_title(scramble)
+
+            self.dialog.present(self)
+
         self.select.set_model(self.store)
         self.scores_column_view.set_model(self.select)
 
@@ -199,7 +367,7 @@ class ScoresColumnView(Gtk.Box):
         self.scores_column_view.append_column(col3)
         self.scores_column_view.append_column(col4)
 
-        self.scores_column_view.connect("activate", self.on_click)
+        self.scores_column_view.connect("activate", on_click)
 
     def build_dialog(self):
         def on_response(widget, response):
@@ -228,42 +396,21 @@ class ScoresColumnView(Gtk.Box):
         self.scroll_to_bottom()
         self.load_stats()
 
-    def on_click(self, widget, index):
-        item = self.model.get_score(self.current_session, index)
-        self.selected_index = index
-
-        time = time_string(item['time'])
-        scramble = item['scramble']
-        alert_string = _("Scramble:- {scramble}\n\nTime:- {time}").format(scramble=scramble, time=time)
-
-        self.dialog.set_heading(_("Solve No. {idx}").format(idx=index+1))
-        self.time_row.set_label(time)
-        self.scramble_row.set_title(scramble)
-
-        self.dialog.present(self)
-
     def delete_index(self, index):
         self.model.delete_score(self.current_session, index)
-
-        while index < len(self.store):
-            self.store.remove(index)
-
-        for idx in range(index, len(self.model.get_session(self.current_session))):
-            self.store.append(Scores(idx))
+        self.load_scores()
 
     def dnf_index(self, index):
         self.model.dnf_score(self.current_session, index)
-
-        while index < len(self.store):
-            self.store.remove(index)
-
-        for idx in range(index, len(self.model.get_session(self.current_session))):
-            self.store.append(Scores(idx))
+        self.load_scores()
 
     def load_stats(self):
         sessions = self.model.get_session(self.current_session)
 
-        time = self.model.get_score(self.current_session, len(sessions)-1)["time"]
+        if len(sessions) == 0:
+            return
+
+        time = self.model.get_score(self.current_session, -1)["time"]
         mo3 = self.model.calculate_average(self.current_session, -1, 3)
         ao5 = self.model.calculate_average(self.current_session, -1, 5)
         ao12 = self.model.calculate_average(self.current_session, -1, 12)
@@ -273,10 +420,17 @@ class ScoresColumnView(Gtk.Box):
         self.current_ao5.set_label(time_string(ao5))
         self.current_ao12.set_label(time_string(ao12))
 
-        self.min_time = min(self.min_time, time) if time > 0 else self.min_time
-        self.min_mo3 = min(self.min_mo3, mo3) if mo3 > 0 else self.min_mo3
-        self.min_ao5 = min(self.min_ao5, ao5) if ao5 > 0 else self.min_ao5
-        self.min_ao12 = min(self.min_ao12, ao12) if ao12 > 0 else self.min_ao12
+        if time > 0:
+            self.min_time = min(self.min_time, time) if self.min_time > 0 else time
+
+        if mo3 > 0:
+            self.min_mo3 = min(self.min_mo3, mo3) if self.min_mo3 > 0 else mo3
+
+        if ao5 > 0:
+            self.min_ao5 = min(self.min_ao5, ao5) if self.min_ao5 > 0 else ao5
+
+        if ao12 > 0:
+            self.min_ao12 = min(self.min_ao12, ao12) if self.min_ao12 > 0 else ao12
 
         self.best_time.set_label(time_string(self.min_time))
         self.best_mo3.set_label(time_string(self.min_mo3))
@@ -284,14 +438,26 @@ class ScoresColumnView(Gtk.Box):
         self.best_ao12.set_label(time_string(self.min_ao12))
 
 
-    def load_scores(self, session):
-        sessions = self.model.get_session(session)
+    def load_scores(self):
+        session = self.current_session
+        scores = self.model.get_session(session)
+        self.store.remove_all()
 
-        self.current_session = session
+        self.current_time.set_label("-")
+        self.current_mo3.set_label("-")
+        self.current_ao5.set_label("-")
+        self.current_ao12.set_label("-")
+        self.best_time.set_label("-")
+        self.best_mo3.set_label("-")
+        self.best_ao5.set_label("-")
+        self.best_ao12.set_label("-")
 
-        self.load_stats()
+        self.min_time = -1
+        self.min_mo3 = -1
+        self.min_ao5 = -1
+        self.min_ao12 = -1
 
-        for idx in range(len(sessions)):
+        for idx in range(len(scores)):
             time = self.model.get_score(session, idx)["time"]
             if time > 0:
                 self.min_time = time if self.min_time == -1 else min(time, self.min_time)
@@ -310,8 +476,5 @@ class ScoresColumnView(Gtk.Box):
 
             self.store.append(Scores(idx))
 
-        self.best_time.set_label(time_string(self.min_time))
-        self.best_mo3.set_label(time_string(self.min_mo3))
-        self.best_ao5.set_label(time_string(self.min_ao5))
-        self.best_ao12.set_label(time_string(self.min_ao12))
+        self.load_stats()
 
