@@ -1,4 +1,10 @@
 from random import randint
+from pathlib import Path
+import os
+
+data_dir = Path(os.getenv('XDG_DATA_HOME', Path.home() / '.local/share')) / 'flatpak' / 'apps' / 'cube-timer' / 'CubeTimer'
+data_dir.mkdir(parents=True, exist_ok=True)
+scores_file_path = data_dir / 'scores.json'
 
 def calc_time(time):
     minutes = time // 6000
@@ -37,5 +43,7 @@ def scramble_gen(scramble_length):
         if arr[i-1][0] == arr[i][0]:
             continue
         i += 1
-    scramble = " ".join([a[0]+a[1] for a in arr])
+    scramble = "  ".join([a[0]+a[1] for a in arr])
     return scramble
+
+

@@ -30,9 +30,8 @@ class CubeTimerLabel(Gtk.Label):
         color = self.color if color == None else color
         time = time_string(self.timer.time)
         time = time if time != "DNF" else "00:00.00"
-        time_format = _("<span font='{font_size}' color='{color}'>{time}</span>")
+        time_format = _("<span color='{color}'>{time}</span>")
         self.set_markup(time_format.format(
-            font_size=self.font_size,
             color=color,
             time=time
         ))
