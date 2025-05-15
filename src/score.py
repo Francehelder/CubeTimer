@@ -174,7 +174,6 @@ class ScoresColumnView(Gtk.Box):
                 self.sessions_store.append(Session(session))
 
         def remove_session(widget, response):
-            print(response)
             if response != "delete":
                 return
 
@@ -271,14 +270,26 @@ class ScoresColumnView(Gtk.Box):
 
     def build_drop_down(self):
         def on_selected_item(dropdown, selected):
-            print(self.current_session)
             selected_item = self.sessions_drop_down.get_selected_item()
             if selected_item == None:
                 return
             self.load_session(selected_item.name)
 
-        expr = Gtk.PropertyExpression.new(Session, None, "name")
-        self.sessions_drop_down.set_expression(expr)
+        fact = Gtk.SignalListItemFactory()
+
+        def f_setup(fact, item):
+            label = Gtk.Label(halign=Gtk.Align.START)
+            label.set_selectable(False)
+            label.set_ellipsize(3)
+            item.set_child(label)
+
+        def f_bind(fact, item):
+            item.get_child().set_label(str(item.get_item().name))
+
+        fact.connect("setup", f_setup)
+        fact.connect("bind", f_bind)
+
+        self.sessions_drop_down.set_factory(fact)
         self.sessions_drop_down.set_model(self.sessions_store)
         sessions = self.model.get_all_sessions()
         for session in sessions:
