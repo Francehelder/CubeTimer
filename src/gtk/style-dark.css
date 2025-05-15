@@ -1,6 +1,5 @@
 .timer {
     font-weight: normal;
-    font-size: 134px;
     font-family: sans-serif;
 }
 
@@ -17,5 +16,5 @@
     color: grey;
     padding: 6px;
     border-radius: 6px;
-    background-color: #FAFAFB;
+    background-color: #222226;
 }

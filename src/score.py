@@ -1,12 +1,6 @@
 from gi.repository import Gtk, GLib, GObject, Gio, Adw, Pango
-from .utils import calc_time, time_string
-import os
+from .utils import calc_time, time_string, scores_file_path
 import json
-from pathlib import Path
-
-data_dir = Path(os.getenv('XDG_DATA_HOME', Path.home() / '.local/share')) / 'flatpak' / 'apps' / 'cube-timer' / 'CubeTimer'
-data_dir.mkdir(parents=True, exist_ok=True)
-scores_file_path = data_dir / 'scores.json'
 
 class CubeTimerModel:
     def __init__(self):

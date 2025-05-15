@@ -96,6 +96,10 @@
       <!--   <attribute name="action">app.preferences</attribute> -->
       <!-- </item> -->
       <item>
+        <attribute name="label" translatable="yes">_View Scores File</attribute>
+        <attribute name="action">app.view_scores</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
         <attribute name="action">win.show-help-overlay</attribute>
       </item>

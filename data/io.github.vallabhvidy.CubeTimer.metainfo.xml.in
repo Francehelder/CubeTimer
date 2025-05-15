@@ -34,6 +34,17 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.1.3" date="2025-05-15">
+      <description translate="no">
+        <ul>
+          <li>Solves can now be organized into seperate sessions.</li>
+          <li>A table showing the best and current solve, mo3(mean of last 3 solves), ao5 and ao12(average of last 5 and 12 solves).</li>
+          <li>A new option was added to the application menu to open the folder containing the scores file.</li>
+          <li>Minor UI changes.</li>
+          <li>Updated screenshots.</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.2" date="2025-05-06">
       <description translate="no">
         <ul>

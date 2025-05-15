@@ -6,10 +6,7 @@ gi.require_version('Adw', '1')
 
 from gi.repository import Gtk, Gio, Adw, Gdk
 from .window import CubeTimerWindow
-
-css_provider = Gtk.CssProvider()
-css_provider.load_from_resource('io/github/vallabhvidy/CubeTimer/gtk/style.css')
-Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+from .utils import scores_file_path
 
 class CubeTimerApplication(Adw.Application):
     """The main application singleton class."""
@@ -17,8 +14,12 @@ class CubeTimerApplication(Adw.Application):
     def __init__(self):
         super().__init__(application_id='io.github.vallabhvidy.CubeTimer',
                          flags=Gio.ApplicationFlags.DEFAULT_FLAGS)
+
+        self.set_resource_base_path("/io/github/vallabhvidy/CubeTimer/gtk")
+
         self.create_action('quit', lambda *_: self.quit(), ['<primary>q'])
         self.create_action('about', self.on_about_action)
+        self.create_action('view_scores', self.on_view_scores)
         # self.create_action('preferences', self.on_preferences_action)
 
     def do_activate(self):
@@ -46,6 +47,15 @@ class CubeTimerApplication(Adw.Application):
     def on_preferences_action(self, widget, _):
         """Callback for the app.preferences action."""
         print('app.preferences action activated')
+
+    def on_view_scores(self, widget, _):
+        file = Gio.File.new_for_path(str(scores_file_path))
+        file_launcher = Gtk.FileLauncher(
+            always_ask=True,
+            file=file,
+        )
+
+        file_launcher.open_containing_folder()
 
     def create_action(self, name, callback, shortcuts=None):
         """Add an application action.
