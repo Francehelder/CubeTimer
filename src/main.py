@@ -13,9 +13,8 @@ class CubeTimerApplication(Adw.Application):
 
     def __init__(self):
         super().__init__(application_id='io.github.vallabhvidy.CubeTimer',
-                         flags=Gio.ApplicationFlags.DEFAULT_FLAGS)
-
-        self.set_resource_base_path("/io/github/vallabhvidy/CubeTimer/gtk")
+                         flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
+                         resource_base_path='/io/github/vallabhvidy/CubeTimer/')
 
         self.create_action('quit', lambda *_: self.quit(), ['<primary>q'])
         self.create_action('about', self.on_about_action)

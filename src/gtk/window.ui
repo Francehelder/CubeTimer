@@ -46,13 +46,13 @@
                   <object class="AdwHeaderBar" id="header_bar">
                     <property name="show-title">false</property>
                     <child type="start">
-                  <object class="GtkToggleButton" id="show_sidebar_button">
-                    <property name="icon-name">sidebar-show-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Toggle Sidebar</property>
-                    <property name="active" bind-source="split_view" bind-property="show-sidebar" bind-flags="sync-create"/>
-                    <!-- <property name="visible" bind-source="start_toggle" bind-property="active" bind-flags="sync-create"/> -->
-                  </object>
-                </child>
+                      <object class="GtkToggleButton" id="show_sidebar_button">
+                        <property name="icon-name">sidebar-show-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Toggle Sidebar</property>
+                        <property name="active" bind-source="split_view" bind-property="show-sidebar" bind-flags="sync-create"/>
+                        <!-- <property name="visible" bind-source="start_toggle" bind-property="active" bind-flags="sync-create"/> -->
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <property name="content">
@@ -71,24 +71,24 @@
                         </object>
                       </child>
                       <child>
-              <object class="GtkBox">
-                <property name="hexpand">1</property>
-                <property name="vexpand">1</property>
-                <property name="margin-start">6</property>
-                <property name="margin-end">6</property>
-                <property name="halign">center</property>
-                <child><object class="CubeTimerLabel" id="cube_timer_label"></object></child>
-              </object>
-            </child>
-          </object>
-                </property>
-              </object>
-            </property>
-          </object>
-        </property>
-      </object>
-    </property>
-  </template>
+                        <object class="GtkBox">
+                          <property name="hexpand">1</property>
+                          <property name="vexpand">1</property>
+                          <property name="margin-start">6</property>
+                          <property name="margin-end">6</property>
+                          <property name="halign">center</property>
+                          <child><object class="CubeTimerLabel" id="cube_timer_label"></object></child>
+                        </object>
+                      </child>
+                    </object>
+                  </property>
+                </object>
+              </property>
+            </object>
+          </property>
+        </object>
+      </property>
+    </template>
   <menu id="primary_menu">
     <section>
       <!-- <item> -->
@@ -96,7 +96,7 @@
       <!--   <attribute name="action">app.preferences</attribute> -->
       <!-- </item> -->
       <item>
-        <attribute name="label" translatable="yes">_View Scores File</attribute>
+        <attribute name="label" translatable="yes">View Scores File</attribute>
         <attribute name="action">app.view_scores</attribute>
       </item>
       <item>
