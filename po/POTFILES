@@ -5,4 +5,4 @@ src/gtk/help-overlay.ui
 src/score.py
 src/scramble.py
 src/window.py
-src/window.ui
+src/gtk/window.ui

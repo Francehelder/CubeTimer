@@ -24,7 +24,7 @@ class CubeTimerApplication(Adw.Application):
     def do_activate(self):
         """Called when the application is activated.
 
-        We raise the application's main window, creating it if
+        We raise the application's min window, creating it if
         necessary.
         """
         win = self.props.active_window
