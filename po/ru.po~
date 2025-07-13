@@ -1,22 +1,23 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Francehelder Santos <francehelder@gmail.com>, 2025.
+# Russian translations for cube-timer package.
+# Copyright (C) 2025 THE cube-timer'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the cube-timer package.
+# Automatically generated, 2025.
+# David Sultaniiazov <x1z53@alt-gnome.ru>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cube-timer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-13 17:22+0530\n"
-"PO-Revision-Date: 2025-07-11 13:21-0300\n"
-"Last-Translator: Francehelder Santos <francehelder@gmail.com>\n"
-"Language-Team: Portuguese\n"
-"Language: pt\n"
+"POT-Creation-Date: 2025-07-13 17:11+0530\n"
+"PO-Revision-Date: 2025-04-28 21:59+0300\n"
+"Last-Translator: David Sultaniiazov <x1z53@alt-gnome.ru>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 48.0\n"
 
 #: data/io.github.vallabhvidy.CubeTimer.desktop.in:3
@@ -30,140 +31,132 @@ msgstr "solve;timer;rubiks;cube;"
 
 #: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:7
 msgid "3x3 Rubiks Cube timer"
-msgstr "Cronômetro de Cubo Mágico 3x3"
+msgstr "Таймер для кубика Рубика 3x3"
 
 #: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:9
 msgid ""
 "Cube Timer is a simple 3x3 Rubiks Cube Timer application for the gnome "
 "desktop. Just long press the space-bar and start solving!"
 msgstr ""
-"Cube Timer é um cronômetro simples para cubo mágico 3x3, feito para o Gnome. "
-"Pressione a barra de espaço e comece a resolver!"
+"Cube Timer — это простой таймер для кубика Рубика 3x3 для рабочего окружения "
+"GNOME. Просто долго жмите на клавишу Пробел и начинайте собирать!"
 
 #: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:21
 msgid "Main window"
-msgstr "Janela principal"
+msgstr "Главное окно"
 
 #: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:25
-#, fuzzy
 msgid "When the timer is running"
-msgstr "Quando o tempo está correndo"
+msgstr "Когда таймер запущен"
 
 #: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:29
-#, fuzzy
 msgid "Mark a solve as DNF or delete it"
-msgstr "Marcar tempo como DNF ou apagá-lo"
+msgstr "Пометить сборку как DNF (не законченную) или удалить"
 
 #: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:33
 msgid "Light Mode"
-msgstr "Modo Claro"
+msgstr ""
 
 #: src/gtk/help-overlay.ui:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr "Geral"
+msgstr "Общее"
 
 #: src/gtk/help-overlay.ui:14
 msgctxt "shortcut window"
 msgid "Start Timer"
-msgstr "Iniciar Cronômetro"
+msgstr "Запустить таймер"
 
 #: src/gtk/help-overlay.ui:20
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Mostrar Atalhos"
+msgstr "Показать клавиатурные сокращения"
 
 #: src/gtk/help-overlay.ui:26
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr "Sair"
+msgstr "Выйти"
 
-#: src/score.py:36
-msgid "scores.json not found."
-msgstr ""
-
-#: src/score.py:233
+#: src/score.py:232
 #, python-brace-format
 msgid "Delete {session}?"
-msgstr "Apagar {session}?"
+msgstr ""
 
-#: src/score.py:242
+#: src/score.py:241
 msgid "Add"
-msgstr "Adicionar"
+msgstr ""
 
-#: src/score.py:244 src/score.py:249 src/score.py:255 src/score.py:387
+#: src/score.py:243 src/score.py:248 src/score.py:254 src/score.py:386
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Отменить"
 
-#: src/score.py:248 src/score.py:386
+#: src/score.py:247 src/score.py:385
 msgid "Delete"
-msgstr "Apagar"
+msgstr "Удалить"
 
-#: src/score.py:253
+#: src/score.py:252
 msgid "Rename"
-msgstr "Renomear"
+msgstr ""
 
-#: src/score.py:315
+#: src/score.py:314
 #, python-brace-format
 msgid ""
 "Scramble:- {scramble}\n"
 "\n"
 "Time:- {time}"
 msgstr ""
-"Embaralhamento:- {scramble}\n"
+"Разборка:- {scramble}\n"
 "\n"
-"Tempo:- {time}"
+"Время:- {time}"
 
-#: src/score.py:317
+#: src/score.py:316
 #, python-brace-format
 msgid "Solve No. {idx}"
-msgstr "Tempo Nº {idx}"
+msgstr "Сборка Но. {idx}"
 
-#: src/score.py:361
+#: src/score.py:360
 msgid "Sr."
-msgstr "Nº"
+msgstr "Но."
 
-#: src/score.py:362 src/gtk/score.ui:76 src/gtk/score.ui:206
+#: src/score.py:361 src/gtk/score.ui:76 src/gtk/score.ui:206
 msgid "Time"
-msgstr "Tempo"
+msgstr "Время"
 
-#: src/score.py:363 src/gtk/score.ui:98
+#: src/score.py:362 src/gtk/score.ui:98
 msgid "ao5"
 msgstr "ao5"
 
-#: src/score.py:364 src/gtk/score.ui:109
+#: src/score.py:363 src/gtk/score.ui:109
 msgid "ao12"
 msgstr "ao12"
 
-#: src/score.py:385
+#: src/score.py:384
 msgid "Mark DNF"
-msgstr "Marcar como DNF"
+msgstr "Пометить как DNF (не завершённое)"
 
 #: src/scramble.py:25
 msgid "Enter scramble length:- "
-msgstr "Tamanho do embaralhamento"
+msgstr "Ввести длину разборки:- "
 
 #: src/gtk/window.ui:26
 msgid "Menu"
-msgstr "Menu"
+msgstr "Меню"
 
 #: src/gtk/window.ui:51
-#, fuzzy
 msgid "Toggle Sidebar"
-msgstr "Barra Lateral"
+msgstr "Переключить боковую панель"
 
 #: src/gtk/window.ui:99
-#, fuzzy
 msgid "View Scores File"
-msgstr "Ver arquivo de resoluções"
+msgstr ""
 
 #: src/gtk/window.ui:103
 msgid "_Keyboard Shortcuts"
-msgstr "_Atalhos de Teclado"
+msgstr "_Клавиатурные сокращения"
 
 #: src/gtk/window.ui:107
 msgid "_About Cube Timer"
-msgstr "_Sobre o Cube Timer"
+msgstr "_О Cube Timer"
 
 #: src/gtk/score.ui:56
 msgid "Current"
@@ -190,10 +183,11 @@ msgid "Enter session name"
 msgstr ""
 
 #: src/gtk/score.ui:241
-#, fuzzy
 msgid "Rename Session"
-msgstr "Renomear"
-
-#: src/main.py:41
-msgid "translator-credits"
 msgstr ""
+
+#~ msgid "Session {idx}"
+#~ msgstr "Сессия {idx}"
+
+#~ msgid "Content"
+#~ msgstr "Содержание"

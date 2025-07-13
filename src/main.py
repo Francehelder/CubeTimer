@@ -1,5 +1,6 @@
 import sys
 import gi
+from gettext import gettext as _
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -32,15 +33,13 @@ class CubeTimerApplication(Adw.Application):
             win = CubeTimerWindow(application=self)
         win.present()
 
-    def on_about_action(self, widget, _):
+    def on_about_action(self, *args):
         """Callback for the app.about action."""
-        about = Adw.AboutWindow(transient_for=self.props.active_window,
-                                application_name='Cube Timer',
-                                application_icon='io.github.vallabhvidy.CubeTimer',
-                                developer_name='vallabhvidy',
-                                version='0.1.3',
-                                developers=['vallabhvidy'],
-                                copyright='© 2025 vallabhvidy')
+        about = Adw.AboutDialog.new_from_appdata("io/github/vallabhvidy/CubeTimer/metainfo.xml", "0.1.3")
+        about.set_developers(["Vallabh Vidyasagar https://github.com/vallabhvidy"])
+        # Translators: Replace "translator-credits" with your names, one name per line
+        about.set_translator_credits(_("translator-credits"))
+        about.set_copyright("© 2025 Vallabh Vidyasagar")
         about.present()
 
     def on_preferences_action(self, widget, _):

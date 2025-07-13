@@ -53,7 +53,7 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="label">Current</property>
+            <property name="label" translatable="yes">Current</property>
             <property name="hexpand">true</property>
             <layout>
               <property name="row">0</property>
@@ -63,7 +63,7 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="label">Best</property>
+            <property name="label" translatable="yes">Best</property>
             <property name="hexpand">true</property>
             <layout>
               <property name="row">0</property>
@@ -73,7 +73,7 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="label">Time</property>
+            <property name="label" translatable="yes">Time</property>
             <property name="halign">1</property>
             <property name="margin-start">2</property>
             <layout>
@@ -84,7 +84,7 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="label">mo3</property>
+            <property name="label" translatable="yes">mo3</property>
             <property name="halign">1</property>
             <property name="margin-start">2</property>
             <layout>
@@ -95,7 +95,7 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="label">ao5</property>
+            <property name="label" translatable="yes">ao5</property>
             <property name="halign">1</property>
             <property name="margin-start">2</property>
             <layout>
@@ -106,7 +106,7 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="label">ao12</property>
+            <property name="label" translatable="yes">ao12</property>
             <property name="halign">1</property>
             <property name="margin-start">2</property>
             <layout>
@@ -226,10 +226,10 @@
   </object>
   <object class="AdwAlertDialog" id="add_session_dialog">
     <property name="prefer-wide-layout">true</property>
-    <property name="heading">Add Session</property>
+    <property name="heading" translatable="yes">Add Session</property>
     <property name="extra-child">
       <object class="GtkEntry" id="session_name">
-        <property name="placeholder-text">Enter session name</property>
+        <property name="placeholder-text" translatable="yes">Enter session name</property>
       </object>
     </property>
   </object>
@@ -238,10 +238,10 @@
   </object>
   <object class="AdwAlertDialog" id="rename_session_dialog">
     <property name="prefer-wide-layout">true</property>
-    <property name="heading">Rename Session</property>
+    <property name="heading" translatable="yes">Rename Session</property>
     <property name="extra-child">
       <object class="GtkEntry" id="session_rename">
-        <property name="placeholder-text">Enter session name</property>
+        <property name="placeholder-text" translatable="yes">Enter session name</property>
       </object>
     </property>
   </object>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cube-timer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-28 21:55+0300\n"
+"POT-Creation-Date: 2025-07-13 17:22+0530\n"
 "PO-Revision-Date: 2025-04-28 21:59+0300\n"
 "Last-Translator: David Sultaniiazov <x1z53@alt-gnome.ru>\n"
 "Language-Team: Russian\n"
@@ -16,12 +16,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 48.0\n"
 
 #: data/io.github.vallabhvidy.CubeTimer.desktop.in:3
-#: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:6 src/window.ui:16
+#: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:6
 msgid "Cube Timer"
 msgstr "Cube Timer"
 
@@ -53,6 +53,10 @@ msgstr "Когда таймер запущен"
 msgid "Mark a solve as DNF or delete it"
 msgstr "Пометить сборку как DNF (не законченную) или удалить"
 
+#: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:33
+msgid "Light Mode"
+msgstr ""
+
 #: src/gtk/help-overlay.ui:11
 msgctxt "shortcut window"
 msgid "General"
@@ -73,27 +77,33 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Выйти"
 
-#: src/score.py:91
-msgid "Sr."
-msgstr "Но."
+#: src/score.py:36
+msgid "scores.json not found."
+msgstr ""
 
-#: src/score.py:92
-msgid "Time"
-msgstr "Время"
+#: src/score.py:233
+#, python-brace-format
+msgid "Delete {session}?"
+msgstr ""
 
-#: src/score.py:93
-msgid "ao5"
-msgstr "ao5"
+#: src/score.py:242
+msgid "Add"
+msgstr ""
 
-#: src/score.py:94
-msgid "ao12"
-msgstr "ao12"
+#: src/score.py:244 src/score.py:249 src/score.py:255 src/score.py:387
+msgid "Cancel"
+msgstr "Отменить"
 
-#: src/score.py:123
-msgid "Solve No. {idx}"
-msgstr "Сборка Но. {idx}"
+#: src/score.py:248 src/score.py:386
+msgid "Delete"
+msgstr "Удалить"
 
-#: src/score.py:123
+#: src/score.py:253
+msgid "Rename"
+msgstr ""
+
+#: src/score.py:315
+#, python-brace-format
 msgid ""
 "Scramble:- {scramble}\n"
 "\n"
@@ -103,42 +113,89 @@ msgstr ""
 "\n"
 "Время:- {time}"
 
-#: src/score.py:124
+#: src/score.py:317
+#, python-brace-format
+msgid "Solve No. {idx}"
+msgstr "Сборка Но. {idx}"
+
+#: src/score.py:361
+msgid "Sr."
+msgstr "Но."
+
+#: src/score.py:362 src/gtk/score.ui:76 src/gtk/score.ui:206
+msgid "Time"
+msgstr "Время"
+
+#: src/score.py:363 src/gtk/score.ui:98
+msgid "ao5"
+msgstr "ao5"
+
+#: src/score.py:364 src/gtk/score.ui:109
+msgid "ao12"
+msgstr "ao12"
+
+#: src/score.py:385
 msgid "Mark DNF"
 msgstr "Пометить как DNF (не завершённое)"
 
-#: src/score.py:125
-msgid "Delete"
-msgstr "Удалить"
-
-#: src/score.py:126
-msgid "Cancel"
-msgstr "Отменить"
-
-#: src/score.py:222
-msgid "Session {idx}"
-msgstr "Сессия {idx}"
-
-#: src/scramble.py:42
+#: src/scramble.py:25
 msgid "Enter scramble length:- "
 msgstr "Ввести длину разборки:- "
 
-#: src/window.ui:28
+#: src/gtk/window.ui:26
 msgid "Menu"
 msgstr "Меню"
 
-#: src/window.ui:54
-msgid "Content"
-msgstr "Содержание"
-
-#: src/window.ui:65
+#: src/gtk/window.ui:51
 msgid "Toggle Sidebar"
 msgstr "Переключить боковую панель"
 
-#: src/window.ui:111
+#: src/gtk/window.ui:99
+msgid "View Scores File"
+msgstr ""
+
+#: src/gtk/window.ui:103
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавиатурные сокращения"
 
-#: src/window.ui:115
+#: src/gtk/window.ui:107
 msgid "_About Cube Timer"
 msgstr "_О Cube Timer"
+
+#: src/gtk/score.ui:56
+msgid "Current"
+msgstr ""
+
+#: src/gtk/score.ui:66
+msgid "Best"
+msgstr ""
+
+#: src/gtk/score.ui:87
+msgid "mo3"
+msgstr ""
+
+#: src/gtk/score.ui:216
+msgid "Scramble"
+msgstr ""
+
+#: src/gtk/score.ui:229
+msgid "Add Session"
+msgstr ""
+
+#: src/gtk/score.ui:232 src/gtk/score.ui:244
+msgid "Enter session name"
+msgstr ""
+
+#: src/gtk/score.ui:241
+msgid "Rename Session"
+msgstr ""
+
+#: src/main.py:41
+msgid "translator-credits"
+msgstr ""
+
+#~ msgid "Session {idx}"
+#~ msgstr "Сессия {idx}"
+
+#~ msgid "Content"
+#~ msgstr "Содержание"

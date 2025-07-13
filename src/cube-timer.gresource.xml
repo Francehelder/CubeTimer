@@ -7,5 +7,6 @@
     <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
     <file alias="style.css">gtk/style.css</file>
     <file alias="style-dark.css">gtk/style-dark.css</file>
+    <file alias="metainfo.xml" preprocess="xml-stripblanks">../data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in</file>
   </gresource>
 </gresources>

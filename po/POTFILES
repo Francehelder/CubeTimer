@@ -6,3 +6,6 @@ src/score.py
 src/scramble.py
 src/window.py
 src/gtk/window.ui
+src/gtk/score.ui
+src/gtk/timerlabel.ui
+src/main.py
