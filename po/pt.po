@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cube-timer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-13 17:22+0530\n"
-"PO-Revision-Date: 2025-07-11 13:21-0300\n"
+"PO-Revision-Date: 2025-07-13 18:35-0300\n"
 "Last-Translator: Francehelder Santos <francehelder@gmail.com>\n"
 "Language-Team: Portuguese\n"
 "Language: pt\n"
@@ -80,7 +80,7 @@ msgstr "Sair"
 
 #: src/score.py:36
 msgid "scores.json not found."
-msgstr ""
+msgstr "scores.json não encontrado."
 
 #: src/score.py:233
 #, python-brace-format
@@ -167,33 +167,32 @@ msgstr "_Sobre o Cube Timer"
 
 #: src/gtk/score.ui:56
 msgid "Current"
-msgstr ""
+msgstr "Atual"
 
 #: src/gtk/score.ui:66
 msgid "Best"
-msgstr ""
+msgstr "Melhor"
 
 #: src/gtk/score.ui:87
 msgid "mo3"
-msgstr ""
+msgstr "mo3"
 
 #: src/gtk/score.ui:216
 msgid "Scramble"
-msgstr ""
+msgstr "Embaralhamento"
 
 #: src/gtk/score.ui:229
 msgid "Add Session"
-msgstr ""
+msgstr "Adicionar Sessão"
 
 #: src/gtk/score.ui:232 src/gtk/score.ui:244
 msgid "Enter session name"
-msgstr ""
+msgstr "Add Nome da Sessão"
 
 #: src/gtk/score.ui:241
-#, fuzzy
 msgid "Rename Session"
-msgstr "Renomear"
+msgstr "Renomear Sessão"
 
 #: src/main.py:41
 msgid "translator-credits"
-msgstr ""
+msgstr "Francehelder Santos"
