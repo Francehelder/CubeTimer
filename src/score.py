@@ -1,7 +1,6 @@
 from gi.repository import Gtk, GLib, GObject, Gio, Adw, Pango
 from .utils import calc_time, time_string, scores_file_path
 import json
-from gettext import gettext as _
 
 class CubeTimerModel:
     def __init__(self):
