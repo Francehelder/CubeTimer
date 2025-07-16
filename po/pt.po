@@ -3,16 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Francehelder Santos <francehelder@gmail.com>, 2025.
+# vallabh <vallabhvidy10@gmail.com>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cube-timer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-16 07:18+0530\n"
-"PO-Revision-Date: 2025-07-13 18:35-0300\n"
-"Last-Translator: Francehelder Santos <francehelder@gmail.com>\n"
-"Language-Team: Portuguese\n"
-"Language: pt\n"
+"PO-Revision-Date: 2025-07-16 18:25+0530\n"
+"Last-Translator: vallabh <vallabhvidy10@gmail.com>\n"
+"Language-Team: Marathi\n"
+"Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -45,12 +46,10 @@ msgid "Main window"
 msgstr "Janela principal"
 
 #: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:25
-#, fuzzy
 msgid "When the timer is running"
 msgstr "Quando o tempo está correndo"
 
 #: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:29
-#, fuzzy
 msgid "Mark a solve as DNF or delete it"
 msgstr "Marcar tempo como DNF ou apagá-lo"
 
@@ -156,12 +155,10 @@ msgid "Content"
 msgstr ""
 
 #: src/gtk/window.ui:51
-#, fuzzy
 msgid "Toggle Sidebar"
 msgstr "Barra Lateral"
 
 #: src/gtk/window.ui:99
-#, fuzzy
 msgid "View Scores File"
 msgstr "Ver arquivo de resoluções"
 
