@@ -24,7 +24,7 @@ class CubeTimerModel:
         try:
             with open(self.path, 'r') as scores_file:
                 sessions = json.load(scores_file)
-                self.sessions["last-session"] = sessions.get("last-session", "Session 1")
+                self.sessions["last-session"] = sessions.get("last-session", _("Session 1"))
                 for session in sessions:
                     if session == "last-session":
                         continue
@@ -33,7 +33,7 @@ class CubeTimerModel:
                         self.sessions[session].append(modscore(score))
         except FileNotFoundError:
             print(_("scores.json not found."))
-            self.sessions = {"Session 1": [], "last-session": "Session 1"}
+            self.sessions = {_("Session 1"): [], "last-session": _("Session 1")}
 
         self.save()
 
@@ -174,9 +174,9 @@ class ScoresColumnView(Gtk.Box):
             self.model.remove_session(self.current_session)
             rebuild_drop_down()
             if len(self.sessions_store) == 0:
-                self.model.add_session("Session 1")
+                self.model.add_session(_("Session 1"))
                 rebuild_drop_down()
-                self.load_session("Session 1")
+                self.load_session(_("Session 1"))
             else:
                 self.load_session(self.sessions_store[-1].name)
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-13 17:22+0530\n"
+"POT-Creation-Date: 2025-07-16 07:18+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/io.github.vallabhvidy.CubeTimer.desktop.in:3
-#: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:6
+#: data/io.github.vallabhvidy.CubeTimer.desktop.in:2
+#: data/io.github.vallabhvidy.CubeTimer.metainfo.xml.in:6 src/gtk/window.ui:15
 msgid "Cube Timer"
 msgstr ""
 
-#: data/io.github.vallabhvidy.CubeTimer.desktop.in:9
+#: data/io.github.vallabhvidy.CubeTimer.desktop.in:8
 msgid "solve;timer;rubiks;cube;"
 msgstr ""
 
@@ -72,32 +72,36 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr ""
 
-#: src/score.py:36
+#: src/score.py:27 src/score.py:36 src/score.py:177 src/score.py:179
+msgid "Session 1"
+msgstr ""
+
+#: src/score.py:35
 msgid "scores.json not found."
 msgstr ""
 
-#: src/score.py:233
+#: src/score.py:232
 #, python-brace-format
 msgid "Delete {session}?"
 msgstr ""
 
-#: src/score.py:242
+#: src/score.py:241
 msgid "Add"
 msgstr ""
 
-#: src/score.py:244 src/score.py:249 src/score.py:255 src/score.py:387
+#: src/score.py:243 src/score.py:248 src/score.py:254 src/score.py:386
 msgid "Cancel"
 msgstr ""
 
-#: src/score.py:248 src/score.py:386
+#: src/score.py:247 src/score.py:385
 msgid "Delete"
 msgstr ""
 
-#: src/score.py:253
+#: src/score.py:252
 msgid "Rename"
 msgstr ""
 
-#: src/score.py:315
+#: src/score.py:314
 #, python-brace-format
 msgid ""
 "Scramble:- {scramble}\n"
@@ -105,28 +109,28 @@ msgid ""
 "Time:- {time}"
 msgstr ""
 
-#: src/score.py:317
+#: src/score.py:316
 #, python-brace-format
 msgid "Solve No. {idx}"
 msgstr ""
 
-#: src/score.py:361
+#: src/score.py:360
 msgid "Sr."
 msgstr ""
 
-#: src/score.py:362 src/gtk/score.ui:76 src/gtk/score.ui:206
+#: src/score.py:361 src/gtk/score.ui:76 src/gtk/score.ui:206
 msgid "Time"
 msgstr ""
 
-#: src/score.py:363 src/gtk/score.ui:98
+#: src/score.py:362 src/gtk/score.ui:98
 msgid "ao5"
 msgstr ""
 
-#: src/score.py:364 src/gtk/score.ui:109
+#: src/score.py:363 src/gtk/score.ui:109
 msgid "ao12"
 msgstr ""
 
-#: src/score.py:385
+#: src/score.py:384
 msgid "Mark DNF"
 msgstr ""
 
@@ -136,6 +140,10 @@ msgstr ""
 
 #: src/gtk/window.ui:26
 msgid "Menu"
+msgstr ""
+
+#: src/gtk/window.ui:41
+msgid "Content"
 msgstr ""
 
 #: src/gtk/window.ui:51
@@ -182,6 +190,6 @@ msgstr ""
 msgid "Rename Session"
 msgstr ""
 
-#: src/main.py:41
+#: src/main.py:40
 msgid "translator-credits"
 msgstr ""
