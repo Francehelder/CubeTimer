@@ -34,6 +34,11 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.1.6" date="2025-07-16">
+      <description translate="no">
+        <p>Clean up translation files</p>
+      </description>
+    </release>
     <release version="0.1.5" date="2025-07-14">
       <description translate="no">
         <p>Added translations</p>
